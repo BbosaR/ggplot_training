@@ -1,0 +1,55 @@
+---
+title: "DATA VISUALIZATION TRAINING with R"
+subtitle: "⚔<br/>ggplot2"
+author: "UI-LISA Collaborators"
+institute: "Laboratory for Interdisciplinary Statistical Analysis(UI-LISA), Department of Statistics,University of Ibadan"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "chocolate", "rladies-fonts"]
+    lib_dir: libs
+    seal: false
+    nature:
+      beforeInit: "cols_macro.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+class: inverse, right
+
+<div style="text-align: left">
+<img style="float: center; margin: 0px 15px 15px 0px;" src="picture/UI.png" width="80" height="100"/>
+<img style="float: center; margin: 0px 15px 15px 0px;" src="picture/UI_LISA.jpg" width="80" height="100"/>
+</div>
+
+## Data Visualization Training (ggplot2)
+
+#### UI LISA<br> Materials: https://github.com/link_torepo
+
+
+---
+class: center, middle
+
+# Week one
+
+---
+
+---
+class: center, middle
+
+# Week two
+
+---
+
+class: center, middle
+
+# Week three
+
+
