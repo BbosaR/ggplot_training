@@ -27,16 +27,20 @@ knitr::opts_chunk$set(echo = TRUE,
                       tidy = FALSE)
 ```
 
-class: inverse, right
+class: inverse, center
 
 <div style="text-align: left">
 <img style="float: center; margin: 0px 15px 15px 0px;" src="picture/UI.png" width="80" height="100"/>
-<img style="float: center; margin: 0px 15px 15px 0px;" src="picture/UI_LISA.jpg" width="80" height="100"/>
 </div>
+
 
 ## Data Visualization Training (ggplot2)
 
 #### UI LISA<br> Materials: https://github.com/link_torepo
+
+<div style="text-align: right">
+<img style="float: center; margin: 0px 15px 15px 0px;" src="picture/UI_LISA.jpg" width="80" height="100"/>
+</div>
 
 
 ---
