@@ -25,6 +25,7 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE,
                       eval = FALSE,
                       tidy = FALSE)
+library(knitr)
 ```
 
 class: inverse, center
@@ -36,7 +37,7 @@ class: inverse, center
 
 ## Data Visualization Training (ggplot2)
 
-#### UI LISA<br> Materials: https://github.com/link_torepo
+#### UI LISA<br> Materials: https://fomotis.github.io/ggplot_training/
 
 <div style="text-align: right">
 <img style="float: center; margin: 0px 15px 15px 0px;" src="picture/UI_LISA.jpg" width="80" height="100"/>
@@ -48,9 +49,49 @@ class: center, middle
 
 # Week one
 
+Assumptions <br>
+
+“Grammar of graphics” <br>
+
+Enters ggplot2<br>
+
+Why the fuss about ggplot2? <br>
+
+Datasets  <br>
+
 ---
 
-# Introduction to GGplot2
+# Assumptions
+
+1. You have access to internet `r emo::ji("heavy_check_mark")`
+
+2. You have some experience working with `R` `r emo::ji("heavy_check_mark")`
+
+3. You like cool graphics `r emo::ji("smile")`
+
+## Desirable but not necessary
+
+1. You have some experience with `tidyverse` and `piping(%>%)` `r emo::ji("+1")`
+
+---
+
+# Grammar of graphics
+
+.pull-left[
+<img src="picture/Hadley-wickham.jpg">
+]
+
+.pull-right[
+
+"A grammar of graphics is a tool that enables us to concisely describe the components of a graphic. Such a grammar allows us to move beyond named graphics and gain insight into the deep structure that underlies statistical graphics".
+
+
+]
+
+
+---
+
+# Enters GGplot2
 
 ---
 class: center, middle
