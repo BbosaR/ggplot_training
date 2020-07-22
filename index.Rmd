@@ -78,15 +78,35 @@ Datasets  <br>
 # Grammar of graphics
 
 .pull-left[
-<img src="picture/Hadley-wickham.jpg">
+<img src="picture/Hadley-wickham.jpg" width="200" height="300">
 ]
 
 .pull-right[
 
-"A grammar of graphics is a tool that enables us to concisely describe the components of a graphic. Such a grammar allows us to move beyond named graphics and gain insight into the deep structure that underlies statistical graphics".
+* Term coined by `Leland Wilkinson` expanded to layered grammar of graphics by `Hadley Wickham`.
 
+* *"A grammar of graphics is a tool that enables us to concisely describe the components of a graphic. Such a grammar allows us to move beyond named graphics and gain insight into the deep structure that underlies statistical graphics"*.
 
+* The concept is essentially a set of rules that allows us to think of a statistical graphic beyond a certain name and format. 
 ]
+
+---
+
+# Grammar of graphics 2
+
+* With this tool, you don't have to think about a scatter or box plot, but what set of information should I put on this graph to convey the message I want. 
+
+* A plot is any name you give it. While the elements of the plots are merely verbs.
+
+* To 
+
+```{r}
+data("HairEyeColor")
+```
+
+.footnote[http://dx.doi.org/10.1198/jcgs.2009.07098]
+
+
 
 
 ---
