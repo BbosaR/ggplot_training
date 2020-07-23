@@ -49,15 +49,13 @@ class: center, middle
 
 # Week one
 
-Assumptions <br>
+`Assumptions` <br>
 
-“Grammar of graphics” <br>
+`Grammar of graphics` <br>
 
-Enters ggplot2<br>
+`Enters ggplot2` <br>
 
-Why the fuss about ggplot2? <br>
-
-Datasets  <br>
+`Why the fuss about ggplot2?` <br>
 
 ---
 
@@ -65,13 +63,22 @@ Datasets  <br>
 
 1. You have access to internet `r emo::ji("heavy_check_mark")`
 
-2. You have some experience working with `R` `r emo::ji("heavy_check_mark")`
+2. You have some experience working with `R` `r emo::ji("question")`
 
 3. You like cool graphics `r emo::ji("smile")`
 
 ## Desirable but not necessary
 
 1. You have some experience with `tidyverse` and `piping(%>%)` `r emo::ji("+1")`
+
+
+#### `r emo::ji("cross mark")` assumption 2  `r emo::ji("right arrow")` crash course in `R` and `tidyverse`
+
+#### `r emo::ji("heavy_check_mark")` assumption 2  `r emo::ji("right arrow")` Grammar of graphics
+
+---
+
+# Crash course in `R` and `tidyverse`
 
 ---
 
@@ -106,46 +113,51 @@ data("HairEyeColor")
 
 .footnote[http://dx.doi.org/10.1198/jcgs.2009.07098]
 
-
-
-
 ---
 
 # Enters GGplot2
+
+* base `R` plots can be built based 
 
 ---
 class: center, middle
 
 # Week two
 
----
+`Basic ggplot2 functions (ggplot and qplot)` <br>
 
-# Week two topic one
-
----
-
-# Week two topic two
+`Basic plots with ggplot2` <br>
 
 ---
 
-# Week two topic three
+# Basic ggplot2 functions
+
+---
+
+# Aesthetics
+
+---
+
+# Basic plots with ggplot2
 
 ---
 class: center, middle
 
 # Week three
 
----
-
-# Week three topic one
+`Legends and Themes customization` <br>
 
 ---
 
-# Week three topic two
+# Themes
 
 ---
 
-# Week three topic three
+# Available Themes
+
+---
+
+# Customising Themes
 
 
 ---
