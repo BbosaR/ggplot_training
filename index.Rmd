@@ -267,9 +267,9 @@ class: center, middle
 
 # week eight topic one
 
-* Describe what Faceting is
+* **Describe what Faceting is**
 
-
+* **How to apply faceting to ggplot2**
 
 
 
