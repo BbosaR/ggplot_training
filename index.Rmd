@@ -1,6 +1,6 @@
 ---
 title: "DATA VISUALIZATION TRAINING with R"
-subtitle: "⚔<br/>ggplot2"
+subtitle: "<br/>ggplot2"
 author: "UI-LISA Collaborators"
 institute: "Laboratory for Interdisciplinary Statistical Analysis(UI-LISA), Department of Statistics,University of Ibadan"
 date: "2016/12/12 (updated: `r Sys.Date()`)"
@@ -102,24 +102,10 @@ class: center, middle
 
 ---
 
-# A Place for the Perfect Romance
+# `dplyr`, `tidyr`, `magrittr`
 
-The romance between <img style="float: center; margin: 0px 0px 0px 0px;" src="pics/Rlogo.png" width="50" height="50"/>
-and <img style="float: center; margin: 0px 0px 0px 0px;" src="pics/Octocat.png" width="50" height="50"/> was perfected in 
-<img style="float: center; margin: 0px 0px 0px 0px;" src="pics/RStudioLogo.png" width="100" height="50"/>
-
-So, what is it about <img style="float: center; margin: 0px 0px 0px 0px;" src="pics/RStudioLogo.png" width="100" height="50"/>`r emo::ji("question_mark")`
-
-* Edit different type of files (`R`, `Rmd`, `Rnw`, `CSS`, `C++`, `Stan`, `Python`, ....)
-* Type your `Git` commands here `r emo::ji("point_right")` `Terminal` console 
-* Arrange your work in `projects``r emo::ji("smiling_face_with_sunglasses")`
-* Easy access to those cool functionalities of `R` `r emo::ji("smiling_face_with_sunglasses")`
-
-<br>
-<br>
-<br>
---
-Hey! You can say bye bye to `Git bash` you know`r emo::ji("runner")`
+* `%>%` is called a pipe and it is made available in the `magrittr` package.
+* It allows you to put the result of an `R` code in another `R` code.
 
 ---
 
