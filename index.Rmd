@@ -80,6 +80,47 @@ class: center, middle
 
 # Crash course in `R` and `tidyverse`
 
+.pull-left[
+<img style="float: center; margin: 0px 0px 0px 0px;" src="picture/Rlogo.png" height="60" width="60" height="50"/>
+
+* free open source statistical software `r emo::ji("thumbsup")`
+* integrate easily with other languages (`Python`, `C++`) `r emo::ji("thumbsup")`
+* fantastic community `r emo::ji("thumbsup")`
+* awesome ecosystem of packages `r emo::ji("thumbsup")`
+* R became pregnant at some point and gave birth to `Tidyverse` `r emo::ji("smile")`
+]
+
+
+.pull-right[
+<img style="float: center; margin: 0px 0px 0px 0px;" src="picture/tidyverse.png" height="60" width="60" height="50"/>
+
+* an opinionated collection of packages designed for data science
+* `dplyr`, `forcats`, `ggplot2`, `purrr`, `readr`, `stringr`, `tibble`, `tidyr`
+
+ [www.tidyverse.org](https://www.tidyverse.org/packages/)
+]
+
+---
+
+# A Place for the Perfect Romance
+
+The romance between <img style="float: center; margin: 0px 0px 0px 0px;" src="pics/Rlogo.png" width="50" height="50"/>
+and <img style="float: center; margin: 0px 0px 0px 0px;" src="pics/Octocat.png" width="50" height="50"/> was perfected in 
+<img style="float: center; margin: 0px 0px 0px 0px;" src="pics/RStudioLogo.png" width="100" height="50"/>
+
+So, what is it about <img style="float: center; margin: 0px 0px 0px 0px;" src="pics/RStudioLogo.png" width="100" height="50"/>`r emo::ji("question_mark")`
+
+* Edit different type of files (`R`, `Rmd`, `Rnw`, `CSS`, `C++`, `Stan`, `Python`, ....)
+* Type your `Git` commands here `r emo::ji("point_right")` `Terminal` console 
+* Arrange your work in `projects``r emo::ji("smiling_face_with_sunglasses")`
+* Easy access to those cool functionalities of `R` `r emo::ji("smiling_face_with_sunglasses")`
+
+<br>
+<br>
+<br>
+--
+Hey! You can say bye bye to `Git bash` you know`r emo::ji("runner")`
+
 ---
 
 # Grammar of graphics
