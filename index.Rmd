@@ -1,6 +1,6 @@
 ---
 title: "DATA VISUALIZATION TRAINING with R"
-subtitle: "⚔<br/>ggplot2"
+subtitle: "<br/>ggplot2"
 author: "UI-LISA Collaborators"
 institute: "Laboratory for Interdisciplinary Statistical Analysis(UI-LISA), Department of Statistics,University of Ibadan"
 date: "2016/12/12 (updated: `r Sys.Date()`)"
@@ -79,6 +79,33 @@ class: center, middle
 ---
 
 # Crash course in `R` and `tidyverse`
+
+.pull-left[
+<img style="float: center; margin: 0px 0px 0px 0px;" src="picture/Rlogo.png" height="60" width="60" height="50"/>
+
+* free open source statistical software `r emo::ji("thumbsup")`
+* integrate easily with other languages (`Python`, `C++`) `r emo::ji("thumbsup")`
+* fantastic community `r emo::ji("thumbsup")`
+* awesome ecosystem of packages `r emo::ji("thumbsup")`
+* R became pregnant at some point and gave birth to `Tidyverse` `r emo::ji("smile")`
+]
+
+
+.pull-right[
+<img style="float: center; margin: 0px 0px 0px 0px;" src="picture/tidyverse.png" height="60" width="60" height="50"/>
+
+* an opinionated collection of packages designed for data science
+* `dplyr`, `forcats`, `ggplot2`, `purrr`, `readr`, `stringr`, `tibble`, `tidyr`
+
+ [www.tidyverse.org](https://www.tidyverse.org/packages/)
+]
+
+---
+
+# `dplyr`, `tidyr`, `magrittr`
+
+* `%>%` is called a pipe and it is made available in the `magrittr` package.
+* It allows you to put the result of an `R` code in another `R` code.
 
 ---
 
