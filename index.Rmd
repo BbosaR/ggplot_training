@@ -241,7 +241,20 @@ class: center, middle
 # Week six topic three
 
 
+---
+# Week seven topic one
 
+---
+# week seven topic two
+
+---
+# week seven topic three
+
+---
+
+# week eight topic one
+
+* Describe what Faceting is
 
 
 
