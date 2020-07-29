@@ -205,10 +205,23 @@ class: center, middle
 # Week four topic three
 
 ---
-class: center, middle
 
-# Week five
+# Week five : Plotting with ggplot2
 
+# Learning objective
+
+`r emo::ji("heavy_check_mark")` Producing scatter plots with ggplot2 <br>
+
+`r emo::ji("heavy_check_mark")` Producing boxplots with ggplot2 <br>
+
+`r emo::ji("heavy_check_mark")` Producing time series plots with ggplot2 <br>
+
+`r emo::ji("heavy_check_mark")` Universal plot setting with ggplot2 <br>
+
+`r emo::ji("heavy_check_mark")` Introduction to Faceting 
+
+
+.pull-right[ `Olubusoye & Akintande`]
 ---
 
 # Week five topic one
