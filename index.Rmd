@@ -183,6 +183,8 @@ class: center, middle
 
 # Learning objective
 
+`r emo::ji("heavy_check_mark")` General introduction; data & types of plot.
+
 `r emo::ji("heavy_check_mark")` Producing scatter plots with ggplot2 <br>
 
 `r emo::ji("heavy_check_mark")` Producing boxplots with ggplot2 <br>
@@ -199,15 +201,571 @@ class: center, middle
 
 # Week five topic one
 
+# Producing plot
+.pull-left[
+* The main questions are: 
+ * What are plots?
+ * What are the different types of plots we can use?
+ * Can you tell a story by mere looking at these plots?
+ * How would you explain them?]
+
+.pull-right[<img src="picture/question2.jpg" width="300" height="300">]
+---
+# Producing plot Cont'd
+
+# Lecture expectation
+
+.pull-left[<img src="picture/exp.jpg" width="300" height="300">]
+
+.pull-right[
+
+* you will learn about various type of data class.
+* you will understand how data classes inform the appropriate type of graph.
+* you will learn about various visualization types.
+* different kinds of plots, when to use them and when not to.
+]
+
+
+---
+# Producing plot Cont'd: Data classification
+
+.pull-left[<img src="picture/data.jpg" width="350" height="300">]
+
+.pull-right[
+
+* `Qualitative` emerges from quality. A type of data that are describe mainly on attributes.
+* `Nominal` are qualitative mainly for identification or assignment. E.g. [Gender, staff ID]
+
+* `Ordinal` are qualitative too but with preference for position or rank. Unlike nominal, there is hierarchy.
+
+* `Quantitative` emerges from quantity or measureable observation.
+
+* `Discrete` are metric that cannot take decimal point.
+
+* `Continuous` are metric that are both decimal and non-decimal.
+
+]
+
+---
+# Data classification: How Data inform graphs
+
+.pull-left[<img src="picture/how.jpg" width="300" height="300">]
+
+.pull-right[
+
+* `Comparing two or more groups` [Gender distribution, Colour distribution, Age group distribution, etc.]
+* `Comparing frequency` [Opinion poll, Election results, etc.]
+
+* `Looking for pattern/trend - Frequency based` [Between two or more groups]
+
+* `Looking for pattern/trend - time based` [single or between two or more variables]
+
+* `Assessing uniqueness` [Outliers]
+
+]
+
 ---
 
-# Week five topic two
+# Type of visualization
+
+.pull-left[<img src="picture/vis.jpg" width="380" height="300">
+
+* `Temporal Visualization` [one-dimensional data, showing some sort of linear relationship - Scatter-plots, Gantt charts, Timelines, Time-Series, Line plots]
+]
+
+.pull-right[
+
+* `Network Visualization` [where each variable is connected. e.g, Node-link diagrams, Matrix plots, Alluvial & Dependency plots.]
+
+* `Hierarchical Visualization` [when the data can be clustered under different categories. e.g., Tree diagrams, Dendrograms, Sunburst diagrams, Ring charts]
+
+* `Multi-dimensional Visualization` [used when there multiple dimensions- e.g. 2D/3D Histograms, 2D/3D Scatter, Pie, Bar, Line plots]
+
+]
 
 ---
 
-# Week five topic three
+# Types of Plot: Barplot
+.pull-left[
+* `Bar plots` [the most basic way to present data, but it can be useful in achieving results through simplicity and clarity.]
+
+```{r}
+day = c(4,8,12,5,2)
+names(day) = c('Mon', 'Tue', 'Wed','Thur', 'Fri')
+barplot(day, ylab = 'Frequency', xlab = 'Week day', col = c(1,2,3,4,5), legend=T)
+```
+<img src="picture/bar.jpg" width="300" height="250">
+
+]
+
+.pull-right[
+
+```{r}
+Attendance = c(20,20,25,20,28)
+names(attendance) = c('Lect1', 'Lect2', 'Lect3','Lect4', 'Lect5')
+Exam_score = c(30,35,38,35,32)
+Test_score = c(20,28,32,31,28)
+
+D = cbind(Exam_score,Test_score,Attendance)
+
+barplot(D, ylab = 'Frequency', xlab = 'Student Items',
+col = c(1,2,3,4,5),legend=T)
+
+```
+<img src="picture/bar1.jpg" width="300" height="250">
+
+<img src="picture/bar2.jpg" width="300" height="250">
+
+]
+
+---
+
+# Types of Plot Cont'd: Barplot
+
+.pull-left[
+* `When to use ` <br>
+
+`r emo::ji("heavy_check_mark")` Comparing a few variables in the same category or datasets with similar variables.
+
+`r emo::ji("heavy_check_mark")` Tracking the progression of a few (1 or 2) variables over time.
+
+* `When not to use` <br>
+
+`r emo::ji("heavy_check_mark")` More than 3 categories of variables
+`r emo::ji("heavy_check_mark")` Visualizing continuous data.
+]
+
+.pull-right[
+<img src="picture/bar2.jpg" width="300" height="350">
+]
+
+---
+# Types of Plot Cont'd: Line plots
+
+.pull-left[
+* When comparing stock prices, or analyzing views of a video over time, line plots can be found pretty much everywhere. 
+
+* The main benefit is that they are very intuitive and the reader can instantly grasp on to the results. 
+
+* `When to use:` <br>
+`r emo::ji("heavy_check_mark")` Tracking and comparing several variables across time.<br>
+`r emo::ji("heavy_check_mark")` Analyzing trends and variation <br>
+`r emo::ji("heavy_check_mark")` Predicting future values.
+
+* `When not to use:` <br>
+`r emo::ji("heavy_check_mark")` Getting a general overview of your data.<br>
+`r emo::ji("heavy_check_mark")` Analyzing individual components or sections.
+
+]
+
+.pull-right[
+<img src="picture/line.jpg" width="300" height="350">
+]
+
+---
+# Types of Plot Cont'd: Scatter plots
+
+.pull-left[
+
+* Used to describe relationships, look at individual sections of data, and describe the distribution of data.
 
 
+* `When to use:` <br>
+`r emo::ji("heavy_check_mark")` Analyzing individual points <br>
+`r emo::ji("heavy_check_mark")` Outlier analysis and understanding fluctuations <br>
+`r emo::ji("heavy_check_mark")` Getting a general overview of variables.
+
+* `When not to use:` <br>
+`r emo::ji("heavy_check_mark")` Looking for precision. <br>
+`r emo::ji("heavy_check_mark")` One-dimensional data. <br>
+`r emo::ji("heavy_check_mark")` Non-numeric/categorical data.
+]
+
+.pull-right[
+<img src="picture/scat.jpg" width="300" height="350">
+]
+
+---
+# Types of Plot Cont'd: Pie chart
+
+.pull-left[
+
+* Used to compare groups, look at individual sections of groups in the data point, and describe the distribution of data.
+
+
+* `When to use:` <br>
+`r emo::ji("heavy_check_mark")` Comparing parts of a whole or relative values.
+
+* `When not to use:` <br>
+`r emo::ji("heavy_check_mark")` Comparing data that doesn’t add up to form a whole.
+]
+
+.pull-right[
+<img src="picture/pie2.png" width="380" height="350">
+]
+
+---
+# Types of Plot Cont'd: Histogram
+
+.pull-left[
+
+* Used to plot a single variable in order to describe the distribution of variable data or frequency.
+
+ * It is possible to super-imposed two histogram in a single chart.
+
+* `When to use:` <br>
+`r emo::ji("heavy_check_mark")` A few variables or datasets across frequency.
+
+* `When not to use:` <br>
+`r emo::ji("heavy_check_mark")` More than 3 variables or datasets
+]
+
+.pull-right[
+<img src="picture/hist1.jpg" width="380" height="350">
+]
+
+---
+# Types of Plot Cont'd: Boxplot
+
+.pull-left[
+
+* Used to plot one or more variables in order to describe the distribution of variable data or frequency and highlight the 5-nums, identify outliers if any.
+
+ * Unlike in histogram, it is possible to plot many variables together on a single graph.
+
+* `When to use:` <br>
+`r emo::ji("heavy_check_mark")` Analyzing or Comparing the distribution of a dataset.
+
+* `When not to use:` <br>
+`r emo::ji("heavy_check_mark")` Analyzing individual datasets.
+]
+
+.pull-right[
+<img src="picture/box.jpg" width="380" height="350">
+]
+
+
+---
+
+# Week five topic two: Producing plots with `ggplot2`
+
+* `ggplot2` is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties.
+
+* To achieve excellent plot, we only need minimal changes if the underlying data change or if we decide to change from a bar plot to a scatterplot. This helps in creating publication quality plots with minimal amounts of adjustments and tweaking.
+
+* `ggplot2` functions like data in the 'long' format, i.e., a column for every dimension, and a row for every observation. Well-structured data will save you lots of time when making figures with ggplot2.
+
+* `ggplot2` graphics are built step by step by adding new elements. Adding layers in this fashion allows for extensive flexibility and customization of plots.
+
+
+---
+
+# Producing plots with `ggplot2` Cont'd.
+
+* To build a `ggplot`, we will use the following basic template that can be used for different types of plots:
+
+```{r}
+ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) + <GEOM$\_$FUNCTION>()
+```
+
+
+# Importing data into R environment or console.
+
+```{r}
+train<-read.csv("training_data.csv", header=T)
+```
+
+* `Load package`
+
+```{r}
+library('tidyverse')
+```
+
+---
+
+# Producing plots with `ggplot2` Cont'd.
+
+* Use the `ggplot()` function and bind the plot to a specific data frame using `data` argument:
+
+```{r}
+ggplot(data = train)
+```
+
+
+# Methods
+
+```{r}
+head(train) #... to visualize the data
+```
+
+* Specify an aesthetic mapping (using the aesthetic `(aes)` function), and selecte the variables to be plotted by specifying how to present them in the graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.
+
+```{r}
+ggplot(data = "", mapping = aes(x, y))
+```
+---
+# Producing plots with `ggplot2` Cont'd.
+
+* Add `geoms` - graphical representations of the data in the plot (points, lines, bars). ggplot2 offers many different geoms; we will use some common ones today, including:
+```{r}
+geom_point() # for scatter plots, dot plots, etc.
+```
+
+```{r}
+geom_boxplot() # for boxplots
+```
+
+```{r}
+geom_line()} # for trend lines, time series, etc.
+```
+* `For instance`
+```{r}
+ggplot(data = "", mapping = aes())+ geom_point()
+```
+
+```{r}
+ggplot(data = "", mapping = aes())+ geom_boxplot()
+```
+
+```{r}
+ggplot(data = "", mapping = aes())+ geom_line()
+```
+
+---
+# Producing scatter plots
+
+* We use `+` operator to add a `geom` to the plot. In this case, we use `geom_point()` because we want a scatter plot.
+
+```{r}
+ggplot(data = train, aes(x = weight, y = hindfoot_length)) +
+geom_point()
+```
+.pull-left[
+<img src="picture/scatter.jpg" width="380" height="350">]
+
+.pull-right[
+
+* The `"+"` operator is useful for modifying existing `ggplot` objects. 
+
+* That is, we can easily set up plot template and explore different types of plots.
+]
+
+---
+
+# Scatter plot Cont'd
+
+* We can re-write the code above like this:
+
+```{r}
+scatterplot <- ggplot(data = train, aes(x = weight, y = hindfoot_length))
+
+scatterplot + geom_point() # to plot
+```
+
+.pull-left[
+<img src="picture/scatter.jpg" width="380" height="350">]
+
+.pull-right[
+
+* Anytime `ggplot()` is used, the function can be seen by any geom layers that we added (i.e., these are universal plot settings).
+
+* This includes the x- and y-axis we set up in `aes()`.
+
+* We can also specify aesthetics for a given geom independently of the aesthetics defined globally in the `ggplot()` function.
+
+]
+
+---
+
+# Scatter plot Cont'd
+
+.pull-left[
+
+* The '+' sign used to add layers must be placed at the end of each line containing a layer. 
+
+* If, otherwise, the `'+'` sign is added in the line before the other layer, ggplot2 will not add the new layer and will return an error message.
+
+* This is the correct syntax for adding layers:
+
+```{r}
+scatterplot +
+  geom_point()
+```
+
+* This will not add the new layer and will return an error message:
+
+```{r}
+scatterplot 
++geom_point()
+```
+
+]
+
+.pull-right[
+
+# Building plots iteratively
+
+* Building plots with `ggplot2` is typically an iterative process.
+
+* We start by specifying the dataset, lay out the axes, and choose a geom:
+
+```{r}
+ggplot(data = train, aes(x = weight, y = hindfoot_length)) +
+geom_point()
+```
+]
+
+---
+# Scatter plot Cont'd
+.pull-left[
+* We modify th plot by adding transparency (alpha) to avoid overplotting:
+
+```{r}
+scatmod <- ggplot(data = train, aes(x = weight, y = hindfoot_length)) 
+
+# to plot
+scatmod+
+geom_point(alpha = 0.1)
+```
+
+]
+
+.pull-right[
+<img src="picture/scatter2.jpg" width="320" height="300">]
+
+---
+# Scatter plot Cont'd
+.pull-left[
+* We can also add colours for all the points:
+
+```{r}
+scatmod2 <- ggplot(data = train, aes(x = weight, y = hindfoot_length)) 
+
+# to plot
+scatmod2+
+geom_point(alpha = 0.1, color ='blue')
+```
+
+]
+
+.pull-right[
+<img src="picture/scatter3.jpg" width="320" height="300">]
+
+---
+# Scatter plot Cont'd
+.pull-left[
+* We can also colour each species in the plot differently.
+
+```{r}
+scatmod3 <- ggplot(data = train, mapping = aes(x = weight, y = hindfoot_length)) 
+
+# to plot
+scatmod3 +
+geom_point(alpha = 0.1, aes(color = species_id))
+```
+
+]
+
+.pull-right[
+<img src="picture/scatter4.jpg" width="320" height="300">]
+
+
+
+---
+# Producing Boxplot
+
+.pull-left[
+
+* Using Boxplot for data visualization.
+
+* For instance, let's visualize the distribution of weight within each species.
+
+```{r}
+scatmod4 <- ggplot(data = train, mapping = aes(x = species_id, y = weight)) 
+
+# to plot
+scatmod4 + geom_boxplot()
+```
+
+]
+
+.pull-right[
+<img src="picture/box.png" width="320" height="300">]
+
+---
+# Producing Boxplot Cont'd
+
+.pull-left[
+
+* Adding points to the boxplot to have a good idea of the number of measurements and of their distribution:
+
+```{r}
+scatmod5 <- ggplot(data = train, mapping = aes(x = species_id, y = weight)) 
+
+# to plot
+scatmod5 + geom_boxplot(alpha = 0) + geom_jitter(alpha = 0.3, color = "tomato")
+```
+
+]
+
+.pull-right[
+<img src="picture/box2.png" width="320" height="300">]
+
+
+---
+
+# Week five topic three: Producing Time series plot
+
+.pull-left[
+* To generate time series data from the dataset, we group the data and count records within each group.
+
+```{r}
+time_yearly <- train%>%
+  count(year, genus)
+```
+
+* We can visualize the timelapse as a line plot with years on the x-axis and counts on the y-axis.
+
+```{r}
+ggplot(data = time_yearly, aes(x = year, y = n)) + geom_line()
+```
+]
+
+.pull-right[
+
+<img src="picture/time.jpg" width="320" height="300">
+]
+---
+# Time series plot cont'd
+
+.pull-left[
+* Unlikely, this does not work because we plotted data for all the genera together. We need to tell `ggplot` to draw a line for each genus by modifying the aesthetic function to include group = `genus`
+
+```{r}
+ggplot(data = time_yearly, aes(x = year, y = n, group=genus)) + geom_line()
+```
+
+]
+
+.pull-right[
+
+<img src="picture/time2.jpg" width="450" height="300">
+]
+---
+# Time series plot cont'd
+
+.pull-left[
+* Let's add colour to distinguish the species and get legend.
+
+```{r}
+ggplot(data = time_yearly, aes(x = year, y = n, color = genus)) + geom_line()
+```
+]
+
+.pull-right[
+
+<img src="picture/time3.jpg" width="450" height="300">
+]
 
 ---
 class: center, middle
