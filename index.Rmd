@@ -124,11 +124,14 @@ class: center, middle
 
 * There are other pipe operators (`%T>%`, `%$%`, `%<>%`) in `magrittr`
 
-* Read more [here](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
+* Read more about piping [here](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
+
+
+`Let's see tidyverse in action`
 
 ---
 
-# `Tidyverse` in action (`selecting`)
+# `selecting`
 
 ```{r chk1}
 library(tidyverse)
@@ -141,7 +144,7 @@ DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
 
 ---
 
-# `Tidyverse` in action (`renaming`)
+# `renaming`
 
 ```{r chk2}
 naija_covid %>% rename(Date = DATE, States = REGION, Cases = `Contaminés`, Deaths = `Décès`, Recovered = `Guéris`) -> naija_covid
@@ -152,7 +155,7 @@ DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
 
 ---
 
-# `Tidyverse` in action (`mutate`)
+# `mutate`
 
 ```{r chk3}
 naija_covid <- naija_covid %>% mutate_at(c("Cases", "Deaths", "Recovered"), as.numeric)
@@ -168,12 +171,54 @@ DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
 ```{r chk4}
 total_cases <- naija_covid %>% group_by(States) %>% summarise(Total_Cases = sum(Cases, na.rm = TRUE)) %>% 
   arrange(desc(Total_Cases))
-DT::datatable(head(total_cases), class = 'cell-border stripe', rownames = FALSE)
+DT::datatable(total_cases, class = 'cell-border stripe', rownames = FALSE, 
+              options = list(pageLength = 4))
 ```
 
 * `summairse_at()`, `summarise_if()`, `summarise_all()`, `summarise_each()`
 
+---
 
+# `filtering`
+
+```{r chk5}
+library(readxl)
+participants_data <- read_xlsx("Data/Data_Visualization_ggplot2_Responses.xlsx") %>% select(-Name)
+participants_data %>% filter(Gender == "Female") -> female_participants
+female_participants %>% 
+  select(email = `Email Address`, Gender, R_familiarity = `Are you familiar with R software?`) %>%
+  DT::datatable(class = 'cell-border stripe', rownames = FALSE, 
+                options = list(pageLength = 4))
+```
+
+---
+
+# `pivot_wider`
+
+```{r chk6}
+participants_data %>% mutate(Nationality = tolower(Nationality)) %>%
+  group_by(Gender, Nationality) %>% summarise(Number = n()) -> long_version
+long_version %>% 
+  pivot_wider(id_cols = c('Nationality'), names_from = "Gender", 
+              values_from = "Number") -> wide_version
+
+  DT::datatable(wide_version, class = 'cell-border stripe', 
+                rownames = FALSE, options = list(pageLength = 4))
+```
+
+---
+
+# `pivot_longer`
+
+```{r chk7}
+pivot_longer(wide_version, cols = -Nationality, 
+             names_to = "Gender", values_to = "Number") -> long_version2
+DT::datatable(long_version2, class = 'cell-border stripe', 
+                rownames = FALSE, options = list(pageLength = 4))
+```
+
+
+Nice animation on these in [tidyexplain](https://github.com/gadenbuie/tidyexplain)
 
 ---
 
@@ -184,6 +229,18 @@ DT::datatable(head(total_cases), class = 'cell-border stripe', rownames = FALSE)
 * Twitter is also a fun place to learn these days
 * Follow [#tidytuesday](https://twitter.com/search?q=%23TidyTuesday&src=typeahead_click) and [@tidyversetweets](https://twitter.com/tidyversetweets) for some cool visualizations and tidyverse tricks
 * Check [https://www.tidyverse.org/learn/](https://www.tidyverse.org/learn/) for free resources on tidyverse
+
+---
+
+# `Some DIY`
+
+1. Using the participants data, extract another dataset containing all `student` participants.
+
+2. Repeat the same action in 1 for `academic researchers`
+
+3. What is the gender frequency for the participants?
+
+4. What course is of interest to most of the participants?
 
 
 ---
@@ -207,20 +264,44 @@ DT::datatable(head(total_cases), class = 'cell-border stripe', rownames = FALSE)
 
 # Grammar of graphics 2
 
-* With this tool, you don't have to think about a scatter or box plot, but what set of information should I put on this graph to convey the message I want. 
+.pull-left[
 
-* A plot is any name you give it. While the elements of the plots are merely verbs.
+<img src="picture/self_description.png" width="300" height="180">
 
-* Hence, you can have a boxplot with scatter points on it if you so desire. Actually, that exists `r emo::ji("smile")`
+* **With this tool, you don't have to think about a scatter or box plot, but what set of information should I put on this graph to convey the message I want**
+]
+
+.pull-right[
+* A plot is any name you give it. While the elements of the plots are merely verbs
+
+* Thus you build plots as you would build a sentence
+
+* Think of yourself as an artist with a canvas and you are free to be as imaginative as possible with your painting `r emo::ji("smiling face with sunglasses")`
+
+* `Hence, you can have a boxplot with scatter points on it if you so desire. Actually, that exists` `r emo::ji("smile")`
 
 .footnote[http://dx.doi.org/10.1198/jcgs.2009.07098]
+]
 
 ---
 
-# Enters GGplot2
+# Enters `ggplot2`
 
+* ggplot2 is the `R` package that allows you implement (layered) grammar of graphics
 
-# Why the Fuss about ggplot2
+* This package is a product of `Hadley Wickham's` PhD.
+
+## Why the Fuss about ggplot2
+
+* `ggplot2` is one of the most downloaded `R` package. Let's check how many [downloads](https://gallery.shinyapps.io/cran-explorer/?_ga=2.106534406.467526461.1596478926-765883120.1595676024)
+
+* ggplot2 follows a clear and consistent syntax `ggplot(aes()) + geom_*()`. We will see more of this next week.
+
+* Nice set of [extensions](https://exts.ggplot2.tidyverse.org/gallery/)
+
+* Vast amount of [resources](https://evamaerey.github.io/ggplot2_grammar_guide/about)
+
+ ** Before next Tuesday, kindly download this [cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf) and study this [resources](https://evamaerey.github.io/ggplot2_grammar_guide/about) *
 
 ---
 class: center, middle
