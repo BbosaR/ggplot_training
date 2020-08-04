@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+
+Data/*.*
+Data/Data_Visualization_ggplot2_Responses.xlsx
+Data/nigeria_covid-19_subnational.csv
