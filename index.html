@@ -134,8 +134,8 @@ naija_covid %&gt;% select(c(1, 5, 7:9)) -&gt; naija_covid
 DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
 ```
 
-<div id="htmlwidget-6c027745ae796ecc33b0" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6c027745ae796ecc33b0">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],["0","0","0","0","0","0"],["0","0","0","0","0","0"],["0","0","0","0","0","0"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>DATE<\/th>\n      <th>REGION<\/th>\n      <th>Contaminés<\/th>\n      <th>Décès<\/th>\n      <th>Guéris<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7dd04debc64a5d09ac6e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7dd04debc64a5d09ac6e">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],["0","0","0","0","0","0"],["0","0","0","0","0","0"],["0","0","0","0","0","0"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>DATE<\/th>\n      <th>REGION<\/th>\n      <th>Contaminés<\/th>\n      <th>Décès<\/th>\n      <th>Guéris<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 * variants: `select_if()`, `select_at()`, `select_var()`.
 
@@ -149,8 +149,8 @@ naija_covid %&gt;% rename(Date = DATE, States = REGION, Cases = `Contaminés`, D
 DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
 ```
 
-<div id="htmlwidget-43386a5ba3d387cb462c" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-43386a5ba3d387cb462c">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],["0","0","0","0","0","0"],["0","0","0","0","0","0"],["0","0","0","0","0","0"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>States<\/th>\n      <th>Cases<\/th>\n      <th>Deaths<\/th>\n      <th>Recovered<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9172f8d83ececcaf94d6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9172f8d83ececcaf94d6">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],["0","0","0","0","0","0"],["0","0","0","0","0","0"],["0","0","0","0","0","0"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>States<\/th>\n      <th>Cases<\/th>\n      <th>Deaths<\/th>\n      <th>Recovered<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 * variants: `rename_if()`, `rename_at()`, `rename_all()`
 
@@ -164,8 +164,8 @@ naija_covid &lt;- naija_covid %&gt;% mutate_at(c("Cases", "Deaths", "Recovered")
 DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
 ```
 
-<div id="htmlwidget-e2dfdf2f5667cb6246c2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e2dfdf2f5667cb6246c2">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>States<\/th>\n      <th>Cases<\/th>\n      <th>Deaths<\/th>\n      <th>Recovered<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4a909d8fcb327cc3da07" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4a909d8fcb327cc3da07">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>States<\/th>\n      <th>Cases<\/th>\n      <th>Deaths<\/th>\n      <th>Recovered<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 * variants: `mutate_if()`, `mutate_at()`, `mutate_all()`
 
@@ -180,8 +180,8 @@ total_cases &lt;- naija_covid %&gt;% group_by(States) %&gt;% summarise(Total_Cas
 DT::datatable(head(total_cases), class = 'cell-border stripe', rownames = FALSE)
 ```
 
-<div id="htmlwidget-d4053ed80cf3e12dc3d1" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d4053ed80cf3e12dc3d1">{"x":{"filter":"none","data":[["Lagos","Federal Capital Territory","Oyo","Edo","Rivers","Delta"],[13538,3129,2193,2000,1535,1428]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>States<\/th>\n      <th>Total_Cases<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9a5a184e2fed492417f4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9a5a184e2fed492417f4">{"x":{"filter":"none","data":[["Lagos","Federal Capital Territory","Oyo","Edo","Rivers","Delta"],[13538,3129,2193,2000,1535,1428]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>States<\/th>\n      <th>Total_Cases<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 * `summairse_at()`, `summarise_if()`, `summarise_all()`, `summarise_each()`
 
@@ -231,9 +231,8 @@ DT::datatable(head(total_cases), class = 'cell-border stripe', rownames = FALSE)
 
 # Enters GGplot2
 
-* base `R` plots can be built based 
 
-
+# Why the Fuss about ggplot2
 
 ---
 class: center, middle
