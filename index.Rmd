@@ -238,9 +238,9 @@ Nice animation on these in [tidyexplain](https://github.com/gadenbuie/tidyexplai
 
 2. Repeat the same action in 1 for `academic researchers`
 
-3. What is the gender frequency for the participants?
+3. What is the `gender frequency` for the participants?
 
-4. What course is of interest to most of the participants?
+4. What `other training` is of interest to the participants? Rank this table in `descending` order.
 
 
 ---

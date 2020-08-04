@@ -137,8 +137,8 @@ naija_covid %&gt;% select(c(1, 5, 7:9)) -&gt; naija_covid
 DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
 ```
 
-<div id="htmlwidget-f4866092a5e1a8c91455" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f4866092a5e1a8c91455">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],["0","0","0","0","0","0"],["0","0","0","0","0","0"],["0","0","0","0","0","0"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>DATE<\/th>\n      <th>REGION<\/th>\n      <th>Contaminés<\/th>\n      <th>Décès<\/th>\n      <th>Guéris<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-eb99c21f5bbecf1423a2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eb99c21f5bbecf1423a2">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],["0","0","0","0","0","0"],["0","0","0","0","0","0"],["0","0","0","0","0","0"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>DATE<\/th>\n      <th>REGION<\/th>\n      <th>Contaminés<\/th>\n      <th>Décès<\/th>\n      <th>Guéris<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 * variants: `select_if()`, `select_at()`, `select_var()`.
 
@@ -152,8 +152,8 @@ naija_covid %&gt;% rename(Date = DATE, States = REGION, Cases = `Contaminés`, D
 DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
 ```
 
-<div id="htmlwidget-e97e10d08234a76f7c9f" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e97e10d08234a76f7c9f">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],["0","0","0","0","0","0"],["0","0","0","0","0","0"],["0","0","0","0","0","0"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>States<\/th>\n      <th>Cases<\/th>\n      <th>Deaths<\/th>\n      <th>Recovered<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-552ff32b8d7f59352e08" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-552ff32b8d7f59352e08">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],["0","0","0","0","0","0"],["0","0","0","0","0","0"],["0","0","0","0","0","0"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>States<\/th>\n      <th>Cases<\/th>\n      <th>Deaths<\/th>\n      <th>Recovered<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 * variants: `rename_if()`, `rename_at()`, `rename_all()`
 
@@ -167,8 +167,8 @@ naija_covid &lt;- naija_covid %&gt;% mutate_at(c("Cases", "Deaths", "Recovered")
 DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
 ```
 
-<div id="htmlwidget-111e6fa7de51f4c2e7c2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-111e6fa7de51f4c2e7c2">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>States<\/th>\n      <th>Cases<\/th>\n      <th>Deaths<\/th>\n      <th>Recovered<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b0fe5db444559b7eb91d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b0fe5db444559b7eb91d">{"x":{"filter":"none","data":[["27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020","27/02/2020"],["Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa"],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Date<\/th>\n      <th>States<\/th>\n      <th>Cases<\/th>\n      <th>Deaths<\/th>\n      <th>Recovered<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 
 * variants: `mutate_if()`, `mutate_at()`, `mutate_all()`
 
@@ -184,8 +184,8 @@ DT::datatable(total_cases, class = 'cell-border stripe', rownames = FALSE,
               options = list(pageLength = 4))
 ```
 
-<div id="htmlwidget-b8ad4d36d0d5c3ff76ad" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b8ad4d36d0d5c3ff76ad">{"x":{"filter":"none","data":[["Lagos","Federal Capital Territory","Oyo","Edo","Rivers","Delta","Kano","Kaduna","Ogun","Ondo","Katsina","Plateau","Ebonyi","Enugu","Borno","Kwara","Gombe","Bauchi","Abia","Imo","Osun","Bayelsa","Jigawa","Benue","Nasarawa","Akwa Ibom","Niger","Sokoto","Anambra","Adamawa","Kebbi","Ekiti","Zamfara","Yobe","Taraba","Cross River","Kogi","Non spécifié",null],[13538,3129,2193,2000,1535,1428,1416,1191,1174,925,710,700,679,677,602,585,558,531,526,452,351,322,322,294,281,176,166,153,132,115,89,86,77,64,30,13,5,0,0]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>States<\/th>\n      <th>Total_Cases<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-71fed469ed2cbab4d9cf" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-71fed469ed2cbab4d9cf">{"x":{"filter":"none","data":[["Lagos","Federal Capital Territory","Oyo","Edo","Rivers","Delta","Kano","Kaduna","Ogun","Ondo","Katsina","Plateau","Ebonyi","Enugu","Borno","Kwara","Gombe","Bauchi","Abia","Imo","Osun","Bayelsa","Jigawa","Benue","Nasarawa","Akwa Ibom","Niger","Sokoto","Anambra","Adamawa","Kebbi","Ekiti","Zamfara","Yobe","Taraba","Cross River","Kogi","Non spécifié",null],[13538,3129,2193,2000,1535,1428,1416,1191,1174,925,710,700,679,677,602,585,558,531,526,452,351,322,322,294,281,176,166,153,132,115,89,86,77,64,30,13,5,0,0]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>States<\/th>\n      <th>Total_Cases<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 * `summairse_at()`, `summarise_if()`, `summarise_all()`, `summarise_each()`
 
@@ -204,8 +204,8 @@ female_participants %&gt;%
                 options = list(pageLength = 4))
 ```
 
-<div id="htmlwidget-e57ca30dcf099d80285d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e57ca30dcf099d80285d">{"x":{"filter":"none","data":[["nasiratade@yahoo.com","lalabaajibolasarulam@gmail.com","tejuwumi@oauife.edu.ng","zelihatzeeluv@gmail.com","nsonali718@gmail.com","Alharbi_nada@hotmail.com","nadaalharbi580@gmail.com","ukachi46@gmail.com","mehwishstat59@gmail.com","amusuya@mubs.ac.ug","amusuya@mubs.ac.ug","amusuya@mubs.ac.ug","swatundu@mubs.ac.ug","swatundu@mubs.ac.ug","mbirungi@mubs.ac.ug","adeeinablessing94@gmail.com","deluxe.aramide@gmail.com","deluxe.aramide@gmail.com","yetundeazeez29@gmail.com","okunolajoanna23@gmail.com","vokesipe888@stu.ui.edu.ng","ayenikeji@gmail.com","seun1077@yahoo.com","jeniphar@yahoo.com","debadare2001@yahoo.co.uk","ifeoluwafabuluje@gmail.com","ifeoluwafabuluje@gmail.com","ifeoluwafabuluje@gmail.com","fogundele5@gmail.com","oluseyihassan@gmail.com","mercy.daniel144199@gmail.com","adesewadeyemo@gmail.com","khayrahdosunmu@gmail.com","adeyinkaadetutu2@gmail.com","eniolaadeyemi22@gmail.com","bellotaiwowakilat@gmail.com","Saydah34@yahoo.com","madubukoada@yahoo.com","aaderonkerebecca@gmail.com","tomisinsanni@gmail.com","bamiyin@yahoo.com"],["Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female"],["Yes","Yes","No","No","No","Yes","Yes","Yes","Yes","No","No","No","No","No","No","No","No","No","Yes","No","Yes","No","No","Yes","No","No","No","No","No","Yes","Yes","No","Yes","No","No","No","No","No","No","No","No"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>email<\/th>\n      <th>Gender<\/th>\n      <th>R_familiarity<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3e7c1ed2453d6505120c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3e7c1ed2453d6505120c">{"x":{"filter":"none","data":[["nasiratade@yahoo.com","lalabaajibolasarulam@gmail.com","tejuwumi@oauife.edu.ng","zelihatzeeluv@gmail.com","nsonali718@gmail.com","Alharbi_nada@hotmail.com","nadaalharbi580@gmail.com","ukachi46@gmail.com","mehwishstat59@gmail.com","amusuya@mubs.ac.ug","amusuya@mubs.ac.ug","amusuya@mubs.ac.ug","swatundu@mubs.ac.ug","swatundu@mubs.ac.ug","mbirungi@mubs.ac.ug","adeeinablessing94@gmail.com","deluxe.aramide@gmail.com","deluxe.aramide@gmail.com","yetundeazeez29@gmail.com","okunolajoanna23@gmail.com","vokesipe888@stu.ui.edu.ng","ayenikeji@gmail.com","seun1077@yahoo.com","jeniphar@yahoo.com","debadare2001@yahoo.co.uk","ifeoluwafabuluje@gmail.com","ifeoluwafabuluje@gmail.com","ifeoluwafabuluje@gmail.com","fogundele5@gmail.com","oluseyihassan@gmail.com","mercy.daniel144199@gmail.com","adesewadeyemo@gmail.com","khayrahdosunmu@gmail.com","adeyinkaadetutu2@gmail.com","eniolaadeyemi22@gmail.com","bellotaiwowakilat@gmail.com","Saydah34@yahoo.com","madubukoada@yahoo.com","aaderonkerebecca@gmail.com","tomisinsanni@gmail.com","bamiyin@yahoo.com"],["Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female","Female"],["Yes","Yes","No","No","No","Yes","Yes","Yes","Yes","No","No","No","No","No","No","No","No","No","Yes","No","Yes","No","No","Yes","No","No","No","No","No","Yes","Yes","No","Yes","No","No","No","No","No","No","No","No"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>email<\/th>\n      <th>Gender<\/th>\n      <th>R_familiarity<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -223,8 +223,8 @@ long_version %&gt;%
                 rownames = FALSE, options = list(pageLength = 4))
 ```
 
-<div id="htmlwidget-f7e37810e624e71cfedc" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f7e37810e624e71cfedc">{"x":{"filter":"none","data":[["indian","nigerian","saudi arabia","ugandan","india","kenyan","malawian","pakistan"],[2,31,2,6,null,null,null,null],[3,75,null,5,1,2,1,1]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Nationality<\/th>\n      <th>Female<\/th>\n      <th>Male<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-79ace55957f9f5be754f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-79ace55957f9f5be754f">{"x":{"filter":"none","data":[["indian","nigerian","saudi arabia","ugandan","india","kenyan","malawian","pakistan"],[2,31,2,6,null,null,null,null],[3,75,null,5,1,2,1,1]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Nationality<\/th>\n      <th>Female<\/th>\n      <th>Male<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":[1,2]}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 ---
 
@@ -238,8 +238,8 @@ DT::datatable(long_version2, class = 'cell-border stripe',
                 rownames = FALSE, options = list(pageLength = 4))
 ```
 
-<div id="htmlwidget-c6f2419be936e69f06ce" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c6f2419be936e69f06ce">{"x":{"filter":"none","data":[["indian","indian","nigerian","nigerian","saudi arabia","saudi arabia","ugandan","ugandan","india","india","kenyan","kenyan","malawian","malawian","pakistan","pakistan"],["Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male"],[2,3,31,75,2,null,6,5,null,1,null,2,null,1,null,1]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Nationality<\/th>\n      <th>Gender<\/th>\n      <th>Number<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1c7008aad5bbeb44136a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1c7008aad5bbeb44136a">{"x":{"filter":"none","data":[["indian","indian","nigerian","nigerian","saudi arabia","saudi arabia","ugandan","ugandan","india","india","kenyan","kenyan","malawian","malawian","pakistan","pakistan"],["Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male","Female","Male"],[2,3,31,75,2,null,6,5,null,1,null,2,null,1,null,1]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Nationality<\/th>\n      <th>Gender<\/th>\n      <th>Number<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":2}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
 
 
 Nice animation on these in [tidyexplain](https://github.com/gadenbuie/tidyexplain)
@@ -256,15 +256,15 @@ Nice animation on these in [tidyexplain](https://github.com/gadenbuie/tidyexplai
 
 ---
 
-# Some DIY
+# `Some DIY`
 
 1. Using the participants data, extract another dataset containing all `student` participants.
 
 2. Repeat the same action in 1 for `academic researchers`
 
-3. What is the gender frequency for the participants?
+3. What is the `gender frequency` for the participants?
 
-4. What course is of interest to most of the participants?
+4. What `other training` is of interest to the participants? Rank this table in `descending` order.
 
 
 ---
