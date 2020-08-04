@@ -23,9 +23,10 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = TRUE, 
                       message = FALSE,	
                       warning = FALSE,
-                      eval = FALSE,
+                      eval = TRUE,
                       tidy = FALSE)
 library(knitr)
+
 ```
 
 class: inverse, center
@@ -57,6 +58,13 @@ class: center, middle
 
 `Why the fuss about ggplot2?` <br>
 
+<br>
+<br>
+
+.pull-right[
+`Olusoji & Olubusoye`
+]
+
 ---
 
 # Assumptions
@@ -66,6 +74,7 @@ class: center, middle
 2. You have some experience working with `R` `r emo::ji("question")`
 
 3. You like cool graphics `r emo::ji("smile")`
+
 
 ## Desirable but not necessary
 
@@ -78,7 +87,7 @@ class: center, middle
 
 ---
 
-# Crash course in `R` and `tidyverse`
+# Crash course in `tidyverse`
 
 .pull-left[
 <img style="float: center; margin: 0px 0px 0px 0px;" src="picture/Rlogo.png" height="60" width="60" height="50"/>
@@ -87,7 +96,6 @@ class: center, middle
 * integrate easily with other languages (`Python`, `C++`) `r emo::ji("thumbsup")`
 * fantastic community `r emo::ji("thumbsup")`
 * awesome ecosystem of packages `r emo::ji("thumbsup")`
-* R became pregnant at some point and gave birth to `Tidyverse` `r emo::ji("smile")`
 ]
 
 
@@ -95,17 +103,88 @@ class: center, middle
 <img style="float: center; margin: 0px 0px 0px 0px;" src="picture/tidyverse.png" height="60" width="60" height="50"/>
 
 * an opinionated collection of packages designed for data science
-* `dplyr`, `forcats`, `ggplot2`, `purrr`, `readr`, `stringr`, `tibble`, `tidyr`
+* `broom`, `dplyr`, `forcats`, `ggplot2`, `purrr`, `readr`, `stringr`, `tibble`, `tidyr`
+8 `broom` provides tools for tidymodels
+* `dplyr` provides a set of functions for common data manipulation problems.
+* `tidyr` provides a set of functions to go from messy data to tidy data.
+* `purrr` provides tools for functional programming. *"You don't always have to write those loops"*
 
- [www.tidyverse.org](https://www.tidyverse.org/packages/)
+[www.tidyverse.org](https://www.tidyverse.org/packages/)
 ]
 
 ---
 
-# `dplyr`, `tidyr`, `magrittr`
+# Pipe
 
-* `%>%` is called a pipe and it is made available in the `magrittr` package.
-* It allows you to put the result of an `R` code in another `R` code.
+* ceci n'est pas un pipe `%>%` 
+
+* It allows you to chain several `R` commands together `r emo::ji("smile")`
+
+* The idea is to  have `R` codes as `x %>% f` rather than `f(x)`. This is an old concept in Linux and Unix systems.
+
+* There are other pipe operators (`%T>%`, `%$%`, `%<>%`) in `magrittr`
+
+* Read more [here](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html)
+
+---
+
+# `Tidyverse` in action (`selecting`)
+
+```{r chk1}
+library(tidyverse)
+naija_covid <- read_delim("Data/nigeria_covid-19_subnational.csv", delim = ";")
+naija_covid %>% select(c(1, 5, 7:9)) -> naija_covid
+DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
+```
+
+* variants: `select_if()`, `select_at()`, `select_var()`.
+
+---
+
+# `Tidyverse` in action (`renaming`)
+
+```{r chk2}
+naija_covid %>% rename(Date = DATE, States = REGION, Cases = `Contaminés`, Deaths = `Décès`, Recovered = `Guéris`) -> naija_covid
+DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
+```
+
+* variants: `rename_if()`, `rename_at()`, `rename_all()`
+
+---
+
+# `Tidyverse` in action (`mutate`)
+
+```{r chk3}
+naija_covid <- naija_covid %>% mutate_at(c("Cases", "Deaths", "Recovered"), as.numeric)
+DT::datatable(head(naija_covid), class = 'cell-border stripe', rownames = FALSE)
+```
+
+* variants: `mutate_if()`, `mutate_at()`, `mutate_all()`
+
+---
+
+# `groups and summaries`
+
+```{r chk4}
+total_cases <- naija_covid %>% group_by(States) %>% summarise(Total_Cases = sum(Cases, na.rm = TRUE)) %>% 
+  arrange(desc(Total_Cases))
+DT::datatable(head(total_cases), class = 'cell-border stripe', rownames = FALSE)
+```
+
+* `summairse_at()`, `summarise_if()`, `summarise_all()`, `summarise_each()`
+
+
+
+---
+
+# Notes
+
+* The slides above do not describe a tip of the iceberg when it comes to tidyverse
+* Should you run into any problem, just Google the error message you get from `R`
+* Twitter is also a fun place to learn these days
+* Follow [#tidytuesday](https://twitter.com/search?q=%23TidyTuesday&src=typeahead_click) and [@tidyversetweets](https://twitter.com/tidyversetweets) for some cool visualizations and tidyverse tricks
+* Check [https://www.tidyverse.org/learn/](https://www.tidyverse.org/learn/) for free resources on tidyverse
+
 
 ---
 
@@ -132,11 +211,7 @@ class: center, middle
 
 * A plot is any name you give it. While the elements of the plots are merely verbs.
 
-* To 
-
-```{r}
-data("HairEyeColor")
-```
+* Hence, you can have a boxplot with scatter points on it if you so desire. Actually, that exists `r emo::ji("smile")`
 
 .footnote[http://dx.doi.org/10.1198/jcgs.2009.07098]
 
@@ -145,6 +220,10 @@ data("HairEyeColor")
 # Enters GGplot2
 
 * base `R` plots can be built based 
+
+```{r chk5}
+
+```
 
 ---
 class: center, middle
