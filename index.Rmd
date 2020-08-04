@@ -219,11 +219,8 @@ DT::datatable(head(total_cases), class = 'cell-border stripe', rownames = FALSE)
 
 # Enters GGplot2
 
-* base `R` plots can be built based 
 
-```{r chk5}
-
-```
+# Why the Fuss about ggplot2
 
 ---
 class: center, middle
