@@ -312,17 +312,259 @@ class: center, middle
 
 `Basic plots with ggplot2` <br>
 
+<br>
+<br>
+
+.pull-right[
+`Olusoji & Olubusoye`
+]
+
 ---
 
 # Basic ggplot2 functions
+
+* `qplot` is sort of the easy way out so we will leave that till the end of this week's lesson. 
+
+* Let us dive into ggplot2 as an artist rather than someone looking for a quick fix.
+
+* As earlier mentioned, ggplot2 follows a consistent and easy syntax. **ggplot() + geom_* + ...  **
+
+* The `ggplot()` command creates a basic canvas for you, on which you then add whatever you want to this canvas with a `+`
+
+* Hence, the word `ggplot()` is the basic function with which you start a chart.
+
+* Type the code below in your R session
+
+```{r chk8, eval = FALSE}
+?ggplot
+```
+
+* **data** is the dataset you would like to plot and **mapping** is the aesthetics.
 
 ---
 
 # Aesthetics
 
+* Think of aesthetics, `aes()`, as the part of your dataset you want to map to things on your plot.
+
+* ggplot expects that everything in an `aes()` statement to be a variable.
+
+* Since `aes()` is a function itself, it has arguments.
+
+```{r chk9, eval = FALSE}
+?aes
+```
+
+* **x** and **y** are arguments for the variables you would like on x and y axis respectively.
+
+* other arguments you can pass include; `fill`, `linetype`, `size`, `color`, `group`, etc.
+
 ---
 
-# Basic plots with ggplot2
+# `geom_*`
+
+* After setting up the canvas, you can start drawing. 
+
+* You do this by adding geoms.
+
+* There are quite a number of geoms. Hence, the cheatsheet.
+
+* Popular ones includes; `geom_line()`, `geom_point()`, `geom_area()`, `geom_tile()`, `geom_errorbar()`, `geom_boxplot()`, `geom_bar`, `geom_bar`, etc.
+
+* Let's see them all in action.
+
+---
+
+# Basic plots with ggplot2 (The basic canvas)
+
+.pull-left[
+```{r chk10a, eval =FALSE}
+participants_data %>% filter(Gender == "Female") %>%
+  ggplot(aes(x = `Are you familiar with R software?`)) 
+```
+]
+
+.pull-right[
+```{r chk10b, echo=FALSE}
+participants_data %>% filter(Gender == "Female") %>%
+  ggplot(aes(x = `Are you familiar with R software?`))
+```
+]
+
+* As earlier mentioned, the `ggplot()` command just gives you a basic canvas which you can then draw on.
+
+---
+
+# Basic plots with ggplot2 (`geom_bar`)
+
+.pull-left[
+```{r chk11a, eval =FALSE}
+participants_data %>% filter(Gender == "Female") %>%
+  ggplot(aes(x = `Are you familiar with R software?`)) + 
+  geom_bar(stat = 'count')
+
+```
+]
+
+.pull-right[
+```{r chk11b, echo=FALSE}
+participants_data %>% filter(Gender == "Female") %>%
+  ggplot(aes(x = `Are you familiar with R software?`)) + 
+  geom_bar(stat = 'count')
+
+```
+]
+
+* Looks like those SPSS plots, right? `r emo::ji("smile")`
+
+* We will do more customization next week. For now, enjoy this rather not so pretty plots. `r emo::ji("smile")`
+
+---
+
+# Some more preprocessing on the COVID-19 data
+
+```{r chk12}
+naija_covid %>% mutate(Date = as.Date(Date, format = "%d/%m/%Y")) %>% 
+  mutate(
+    dt = c(0, diff(Date)), 
+    Day = cumsum(c(1, diff(Date)))
+  ) -> naija_covid    
+
+
+DT::datatable(naija_covid, class = 'cell-border stripe', 
+              rownames = FALSE, options = list(pageLength = 3))
+```
+
+---
+
+# Basic plots with ggplot2 (`geom_line`, `geom_point`)
+
+.pull-left[
+```{r chk13a, eval = FALSE}
+naija_covid %>% filter(States == 'Lagos') %>% 
+  ggplot(aes(x = Day, y = Cases, group = 1)) + 
+  geom_line() +
+  geom_point() 
+```
+]
+
+.pull-right[
+```{r chk13b, echo=FALSE}
+  naija_covid %>% filter(States == 'Lagos') %>% 
+  ggplot(aes(x = Day, y = Cases, group = 1)) + 
+  geom_line() +
+  geom_point() 
+```
+]
+
+---
+
+# Basic plots with ggplot2 (`geom_line()`)
+
+.pull-left[
+```{r chk14a, eval = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line()
+```
+
+* Note the use of the `group` and `color` aesthetics
+]
+
+.pull-right[
+```{r chk14b, echo = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line()
+```
+]
+
+---
+
+# Basic plots with ggplot2 (`geom_boxplot`)
+
+.pull-left[
+```{r chk15a, eval = FALSE}
+data("sleep")
+sleep %>% ggplot(aes(x = group, 
+                     y = extra)) +
+  geom_boxplot(fill = "orange")
+```
+]
+
+.pull-right[
+```{r chk15b, echo=FALSE}
+data("sleep")
+sleep %>% ggplot(aes(x = group, y = extra)) +
+  geom_boxplot(fill = "orange")
+```
+
+]
+
+---
+# Basic plots with ggplot2 (`geom_errorbar`)
+
+.pull-left[
+```{r chk16a, eval = FALSE}
+sleep %>% group_by(group) %>%
+  summarise(ave = mean(extra), 
+            vs = sd(extra)) %>%
+  ggplot(aes(x = group, y = ave, group = 1)) +
+  geom_errorbar(aes(ymin = ave-vs, ymax=ave+vs), width = 0.1, 
+                size = 1.3) + 
+  geom_point(size = 7, color = 'orange3')
+```
+]
+
+.pull-right[
+```{r chk16b, echo = FALSE}
+sleep %>% group_by(group) %>%
+  summarise(ave = mean(extra), 
+            vs = sd(extra)) %>%
+  ggplot(aes(x = group, y = ave, group = 1)) +
+  geom_errorbar(aes(ymin = ave-vs, ymax=ave+vs), width = 0.1, 
+                size = 1.3) + 
+  geom_point(size = 7, color = 'orange3')
+```
+]
+
+---
+# Basic plots with ggplot2 (`geom_density`)
+
+.pull-left[
+```{r chk17a, eval = FALSE}
+data("sleep")
+sleep %>% ggplot(aes(x = extra)) +
+  geom_density(aes(fill = group))
+```
+* You can also put aesthetic and data arguments in `geom_*`
+]
+
+.pull-right[
+```{r chk17b, echo = FALSE}
+data("sleep")
+sleep %>% ggplot(aes(x = extra)) +
+  geom_density(aes(fill = group))
+```
+]
+
+* This opens up endless possibilities. For example, you can plot two different datasets together `r emo::ji("smile")`.
+
+---
+
+# Round up
+
+* As you might have noticed, we tried to keep it simple, basic and clean.
+
+* It is important for participants to properly understand these basics for what is to come next.
+
+* Try to go through the cheasheet and resource provided last week and practice some more.
+
+## `DIY`
+
+Make a side by side barplot of the participants familiarity with `R`. Let the gender be on the x axis, the count on the y axis.
 
 ---
 class: center, middle
