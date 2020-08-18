@@ -825,6 +825,55 @@ naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>%
 ```
 ]
 
+
+---
+
+# Customising Themes 3.
+
+.pull-left[
+```{r chk25a, eval = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line(size = 2) + 
+  theme_minimal() +
+  labs(color = 'Three States', x = 'Day', y = 'COVID-19 Cases') + 
+  theme(legend.position = 'top', 
+         legend.title = element_text(face = 'bold', size = 18), 
+         legend.text = element_text(face = 'bold', size = 15), 
+         axis.line = element_line(size = 9, colour = 'green3', 
+                                linetype = 'dashed'), 
+*        axis.text = element_text(face = 'bold', size = 22, 
+*                                 family = 'sans'), 
+         axis.title = element_text(face = 'bold', size = 25, 
+*                                 family = 'sans')
+)
+```
+]
+
+.pull-right[
+```{r chk25b, echo = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line(size = 2) + 
+  theme_minimal() +
+  labs(color = 'Three States', x = 'Day', y = 'COVID-19 Cases') + 
+  theme(legend.position = 'top', 
+         legend.title = element_text(face = 'bold', size = 18), 
+         legend.text = element_text(face = 'bold', size = 15), 
+         axis.line = element_line(size = 9, colour = 'green3', 
+                                linetype = 'dashed'), 
+        axis.text = element_text(face = 'bold', size = 22, 
+                                 family = 'sans'), 
+         axis.title = element_text(face = 'bold', size = 25, 
+                                   family = 'sans')
+)
+```
+]
+
+---
+
 # Round up
 
 * `labs()` allows you to set x and y axis titles as well as make changes to other parts of your plot.
