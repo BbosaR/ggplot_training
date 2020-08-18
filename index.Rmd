@@ -573,17 +573,275 @@ class: center, middle
 
 `Legends and Themes customization` <br>
 
+<br>
+<br>
+
+.pull-right[
+`Olusoji & Olubusoye`
+]
+
+---
+
+# Legends
+
+.pull-left[
+```{r chk18a, eval = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line()
+```
+]
+
+.pull-right[
+```{r chk18b, echo = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line()
+```
+]
+
+* Legends and themes aren't really about the plot, they are about art and communication.
+* 
+
+---
+
+# Customizing Legend title
+
+.pull-left[
+```{r chk19a, eval = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line() + 
+*  labs(color = 'Three States') 
+```
+]
+
+.pull-right[
+```{r chk19b, echo = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line() + 
+  labs(color = 'Three States') 
+```
+]
+
+* To be able to customize a legend, you must know the aesthetics being summarised in the legend.
+
+* For the plot above, the `color` aesthetics is what is summarised in the legend.
+
+* The same can be done for any other aesthetics.
+
+---
+
+# Customizing Legend Position
+
+.pull-left[
+```{r chk20a, eval = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line() + 
+  labs(color = 'Three States') + 
+*  theme(legend.position = 'top')
+```
+]
+
+.pull-right[
+```{r chk20b, echo = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line() + 
+  labs(color = 'Three States') + 
+  theme(legend.position = 'top')
+```
+]
+
+* The `legend.position` option in the `theme()` function allows you to place legend in the position of your choice.
+
+* You should type `?theme` in your `R` session. More about this in theme customization 
+
+---
+
+# Customizing Legend size
+
+.pull-left[
+```{r chk21a, eval = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+*  geom_line(size = 2) + 
+  labs(color = 'Three States') + 
+*  theme(legend.position = 'top', 
+*         legend.title = element_text(face = 'bold', size = 18), 
+*         legend.text = element_text(face = 'bold', size = 15))
+```
+]
+
+.pull-right[
+```{r chk21b, echo = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line(size = 2) + 
+  labs(color = 'Three States') + 
+  theme(legend.position = 'top', 
+         legend.title = element_text(face = 'bold', size = 18), 
+         legend.text = element_text(face = 'bold', size = 15))
+```
+]
+
+* The `legend.title` and `legend.text` options allows for customization of texts and titles in the legend.
+
+* Note that we used the function `element_text()`. Others include; `element_rect()`, `element_blank()`, `element_line()`
+
 ---
 
 # Themes
+
+* You can customize and write your own themes. However, there are some themes already existing in `ggplot2`.
+
+* Inbuilt themes include; `theme_bw()`, `theme_classic()`, `theme_minimal()`, `theme_dark()`, etc.
+
+* There are packages built around theme customization, e.g. `ggpubr` which provides you with `theme_pubr()`
+
+* Let's apply some of these available themes.
 
 ---
 
 # Available Themes
 
+.pull-left[
+```{r chk22a, eval = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line(size = 2) + 
+*  theme_minimal() +
+  labs(color = 'Three States') + 
+  theme(legend.position = 'top', 
+         legend.title = element_text(face = 'bold', size = 18), 
+         legend.text = element_text(face = 'bold', size = 15))
+```
+]
+
+.pull-right[
+```{r chk22b, echo = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line(size = 2) + 
+  theme_minimal() +
+  labs(color = 'Three States') + 
+  theme(legend.position = 'top', 
+         legend.title = element_text(face = 'bold', size = 18), 
+         legend.text = element_text(face = 'bold', size = 15))
+```
+]
+
+* Note that we place `theme_minimal()` before `theme()`. 
+
+* We do this to override the default options for `legend.title` and `legend.text` in `theme_minimal()` which implies that we are already customizing `theme_minimal()`.
+
 ---
 
-# Customising Themes
+# Customising Themes 1.
+
+.pull-left[
+```{r chk23a, eval = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line(size = 2) + 
+  theme_minimal() +
+  labs(color = 'Three States') + 
+  theme(legend.position = 'top', 
+         legend.title = element_text(face = 'bold', size = 18), 
+         legend.text = element_text(face = 'bold', size = 15), 
+*         axis.line = element_line(size = 3, colour = 'green3', 
+*                                linetype = 'dashed'))
+```
+]
+
+.pull-right[
+```{r chk23b, echo = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line(size = 2) + 
+  theme_minimal() +
+  labs(color = 'Three States') + 
+  theme(legend.position = 'top', 
+         legend.title = element_text(face = 'bold', size = 18), 
+         legend.text = element_text(face = 'bold', size = 15), 
+        axis.line = element_line(size = 3, colour = 'green3', 
+                                 linetype = 'dashed'))
+```
+]
+
+* `axis.line.x` and `axis.line.y` are variants of the `axis.line` argument.
+
+---
+
+# Customising Themes 2.
+
+.pull-left[
+```{r chk24a, eval = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line(size = 2) + 
+  theme_minimal() +
+  labs(color = 'Three States', x = 'Day', y = 'COVID-19 Cases') + 
+  theme(legend.position = 'top', 
+         legend.title = element_text(face = 'bold', size = 18), 
+         legend.text = element_text(face = 'bold', size = 15), 
+         axis.line = element_line(size = 9, colour = 'green3', 
+                                linetype = 'dashed'), 
+*        axis.text = element_text(face = 'bold', size = 22, 
+*                                 family = 'sans'))
+```
+]
+
+.pull-right[
+```{r chk24b, echo = FALSE}
+naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
+  ggplot(aes(x = Day, y = Cases, group = States, 
+             color = States)) + 
+  geom_line(size = 2) + 
+  theme_minimal() +
+  labs(color = 'Three States', x = 'Day', y = 'COVID-19 Cases') + 
+  theme(legend.position = 'top', 
+         legend.title = element_text(face = 'bold', size = 18), 
+         legend.text = element_text(face = 'bold', size = 15), 
+         axis.line = element_line(size = 3, colour = 'green3', 
+                                linetype = 'dashed'), 
+        axis.text = element_text(face = 'bold', size = 22, 
+                                 family = 'sans'))
+```
+]
+
+# Round up
+
+* `labs()` allows you to set x and y axis titles as well as make changes to other parts of your plot.
+
+* `theme()` allows you to customise a bunch of things about your graphs.
+
+* You can always start from an existing theme and customize it to your satisfaction
+
+* You can as well write your own theme from the scratch.
+
+* Endeavour to read more using `?theme`, `?labs`.
+
+## DIY
+
+* Customize the other plots discussed in the last class.
+
+
 
 
 ---
