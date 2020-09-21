@@ -1,0 +1,81 @@
+"iso2c","country","year","Pop_Setting","Total_Pop"
+"AO","Angola",2015,"Urban_Pop",63
+"AO","Angola",2016,"Urban_Pop",64
+"AO","Angola",2017,"Urban_Pop",65
+"AO","Angola",2018,"Urban_Pop",66
+"BW","Botswana",2015,"Urban_Pop",67
+"BW","Botswana",2016,"Urban_Pop",68
+"BW","Botswana",2017,"Urban_Pop",69
+"BW","Botswana",2018,"Urban_Pop",69
+"LS","Lesotho",2015,"Urban_Pop",27
+"LS","Lesotho",2016,"Urban_Pop",27
+"LS","Lesotho",2017,"Urban_Pop",28
+"LS","Lesotho",2018,"Urban_Pop",28
+"MW","Malawi",2015,"Urban_Pop",16
+"MW","Malawi",2016,"Urban_Pop",17
+"MW","Malawi",2017,"Urban_Pop",17
+"MW","Malawi",2018,"Urban_Pop",17
+"MZ","Mozambique",2015,"Urban_Pop",34
+"MZ","Mozambique",2016,"Urban_Pop",35
+"MZ","Mozambique",2017,"Urban_Pop",35
+"MZ","Mozambique",2018,"Urban_Pop",36
+"NA","Namibia",2015,"Urban_Pop",47
+"NA","Namibia",2016,"Urban_Pop",48
+"NA","Namibia",2017,"Urban_Pop",49
+"NA","Namibia",2018,"Urban_Pop",50
+"SZ","Eswatini",2015,"Urban_Pop",23
+"SZ","Eswatini",2016,"Urban_Pop",23
+"SZ","Eswatini",2017,"Urban_Pop",24
+"SZ","Eswatini",2018,"Urban_Pop",24
+"ZA","South Africa",2015,"Urban_Pop",65
+"ZA","South Africa",2016,"Urban_Pop",65
+"ZA","South Africa",2017,"Urban_Pop",66
+"ZA","South Africa",2018,"Urban_Pop",66
+"ZM","Zambia",2015,"Urban_Pop",42
+"ZM","Zambia",2016,"Urban_Pop",42
+"ZM","Zambia",2017,"Urban_Pop",43
+"ZM","Zambia",2018,"Urban_Pop",44
+"ZW","Zimbabwe",2015,"Urban_Pop",32
+"ZW","Zimbabwe",2016,"Urban_Pop",32
+"ZW","Zimbabwe",2017,"Urban_Pop",32
+"ZW","Zimbabwe",2018,"Urban_Pop",32
+"AO","Angola",2015,"Rural_Pop",37
+"AO","Angola",2016,"Rural_Pop",36
+"AO","Angola",2017,"Rural_Pop",35
+"AO","Angola",2018,"Rural_Pop",34
+"BW","Botswana",2015,"Rural_Pop",33
+"BW","Botswana",2016,"Rural_Pop",32
+"BW","Botswana",2017,"Rural_Pop",31
+"BW","Botswana",2018,"Rural_Pop",31
+"LS","Lesotho",2015,"Rural_Pop",73
+"LS","Lesotho",2016,"Rural_Pop",73
+"LS","Lesotho",2017,"Rural_Pop",72
+"LS","Lesotho",2018,"Rural_Pop",72
+"MW","Malawi",2015,"Rural_Pop",84
+"MW","Malawi",2016,"Rural_Pop",83
+"MW","Malawi",2017,"Rural_Pop",83
+"MW","Malawi",2018,"Rural_Pop",83
+"MZ","Mozambique",2015,"Rural_Pop",66
+"MZ","Mozambique",2016,"Rural_Pop",65
+"MZ","Mozambique",2017,"Rural_Pop",65
+"MZ","Mozambique",2018,"Rural_Pop",64
+"NA","Namibia",2015,"Rural_Pop",53
+"NA","Namibia",2016,"Rural_Pop",52
+"NA","Namibia",2017,"Rural_Pop",51
+"NA","Namibia",2018,"Rural_Pop",50
+"SZ","Eswatini",2015,"Rural_Pop",77
+"SZ","Eswatini",2016,"Rural_Pop",77
+"SZ","Eswatini",2017,"Rural_Pop",76
+"SZ","Eswatini",2018,"Rural_Pop",76
+"ZA","South Africa",2015,"Rural_Pop",35
+"ZA","South Africa",2016,"Rural_Pop",35
+"ZA","South Africa",2017,"Rural_Pop",34
+"ZA","South Africa",2018,"Rural_Pop",34
+"ZM","Zambia",2015,"Rural_Pop",58
+"ZM","Zambia",2016,"Rural_Pop",58
+"ZM","Zambia",2017,"Rural_Pop",57
+"ZM","Zambia",2018,"Rural_Pop",56
+"ZW","Zimbabwe",2015,"Rural_Pop",68
+"ZW","Zimbabwe",2016,"Rural_Pop",68
+"ZW","Zimbabwe",2017,"Rural_Pop",68
+"ZW","Zimbabwe",2018,"Rural_Pop",68
