@@ -213,12 +213,172 @@ class: center, middle
 # week seven topic three
 
 ---
+class: center, middle
 
-# week eight topic one
+# Week Eight
+---
 
-* **Describe what Faceting is**
 
-* **How to apply faceting to ggplot2**
+## Proponent(s) of Facets
+.pull-left[
+
+* **Facets** were popularised by Edward Tuffe in his 1983 book, *The Visual Display of Quantivative Information*, from a concept of small multiples.
+
+![](picture/book_cover.png)
+]
+
+.pull-right[
+* The idea is that we can spread up a small part to produce multiple 
+smaller parts that have the same cordinate system.
+
+Taking an example of tips per total bill
+
+![](picture/tips.png)
+]
+
+---
+## **Purpose of Facets**
+
+Faceting helps to split the data up into groups, according to a categorical variable, then plots each group in its own panel.
+
+![](picture/tips2.png)
+
+---
+## Install the required packages and load the libraries
+
+install.packages("ggplot2")
+
+install.packages("tidyverse")
+
+library(ggplot2)
+
+library(reshape2)
+
+* Inspect the variables in `tips` data set from `reshape` library
+
+```r
+names(tips)
+head(tips)
+str(tips)
+```
+
+---
+## Formula notation
+
+Faceting splits the data up into groups, according to a categorical variable, 
+then plots each group in its own panel. 
+
+For splitting the data by one or two categorical variables, `facet_grid()` is 
+used. As well as the `vars()` notation for specifying which variables should
+be used to split the dataset into facets.
+
+* To divide by "sex" vertically;-
+
+
+```r
+ggplot(tips, aes(x=total_bill, 
+                 y=tip/total_bill)) + 
+  geom_point(shape=1) + 
+  facet_grid(cols = vars(sex)) # or facet_grid(. ~ sex)
+```
+
+* To divide by "sex' horizontally;-
+
+
+```r
+library(ggplot2)
+library(reshape2)
+ggplot(tips, aes(x=total_bill, 
+                 y=tip/total_bill)) + 
+  geom_point(shape=1) + 
+  facet_grid(rows = vars(sex)) # or facet_grid(sex ~ .)
+```
+
+
+---
+## **Results**
+.pull-left[
+* To divide by "sex" vertically;-
+&lt;img src="picture/tips3.png" style="width:400px;height:300px; center;"&gt;
+
+]
+
+.pull-right[
+* To divide by "sex" vertically;-
+![](picture/tips4.png)
+]
+
+---
+## **How to Add two categories**
+In order to add two categories, both the `rows` and `cols` arguments in `facet_grid` are used.
+
+![](picture/tips5.png)
+
+---
+## **Using geom_bar chart**
+
+Using WDI data from the World Bank, population demographics can be categorised as Urban and Rural. Data was obtained from 2015 to 2018 for the Southern Africa countries namely Eswatini, Angola, Botswana, Malawi, South Africa, Mozambique, Zambia , Zimbabwe, Namibia,Lesotho, South Africa, Botswana and Angola.
+
+Using the 'Rural_Urban_lg.csv' file, first inspect the variables in the dataset
+
+
+
+```r
+Rural_Urban_lg &lt;- read.csv("~/UI_LISA/Training_2/ggplot_training/Data/Rural_Urban_lg.csv", 
+                          header = TRUE, stringsAsFactors = FALSE)
+names(Rural_Urban_lg) # To know the list of all variables 
+str(Rural_Urban_lg) # To know the structure of the given variables
+head(Rural_Urban_lg) # To know the first 6 rows (observations)
+tail(Rural_Urban_lg) # To know the last 6 rows (observations)
+```
+
+
+---
+## **Plotting the bar chart**
+
+```r
+ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
+  geom_bar(aes(reorder(country, Total_Pop),Total_Pop),
+           stat= "identity", show.legend = TRUE) +
+  scale_fill_brewer(palette = "Paired")+
+  facet_grid(Pop_Setting ~ year ,labeller= label_context, 
+              scales = "free") +
+  geom_text(aes(label= Total_Pop), hjust=-0.1, colour="black",
+             size=2.2, angle=90) +
+  ylab("Proportion of population (%)") +
+  theme(axis.text.x = element_text(angle = 90, hjust =1, vjust=0.2))
+```
+
+
+---
+## **Results**
+&lt;img src="picture/wb1.png" style="width:700px;height:500px; center;"&gt;
+
+---
+## **Comparing geom_bar with Miscrosoft Excel output**
+&lt;img src="picture/Urban_Rural_Proportion.jpg" style="width:800px;height:500px; center;"&gt;
+
+---
+
+## **Using facet_wrap**
+
+
+```r
+ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
+  geom_bar(aes(reorder(country, Total_Pop),Total_Pop),
+           stat= "identity", show.legend = TRUE) +
+   geom_text(aes(label= Total_Pop), hjust=-0.2, colour="black",
+             size=3, angle=90) +
+    scale_fill_brewer(palette = "Paired")+
+  ylab("Proportion of population (%)") +
+   facet_wrap(Pop_Setting ~ year, nrow = 2, scales = "free") +
+   theme(axis.text.x = element_text(angle = 90, hjust =1, vjust=0.2))
+```
+
+
+---
+## **Results**
+&lt;img src="picture/wb2.png" style="width:800px;height:500px; center;"&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
