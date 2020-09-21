@@ -110,7 +110,7 @@ class: center, middle
 * `purrr` provides tools for functional programming. *"You don't always have to write those loops"*
 
 [www.tidyverse.org](https://www.tidyverse.org/packages/)
-]
+] [TidyVerse_Part1_V1.html](TidyVerse_Part1_V1.html)
 
 ---
 
