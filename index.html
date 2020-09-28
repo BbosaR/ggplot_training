@@ -223,8 +223,7 @@ class: center, middle
 .pull-left[
 
 * **Facets** were popularised by Edward Tuffe in his 1983 book, *The Visual Display of Quantivative Information*, from a concept of small multiples.
-
-![](picture/book_cover.png)
+&lt;img src="picture/book_cover.png" width="300" height="300"/&gt;
 ]
 
 .pull-right[
@@ -352,11 +351,11 @@ ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
 
 ---
 ## **Results**
-&lt;img src="picture/wb1.png" style="width:700px;height:500px; center;"&gt;
+&lt;img src="picture/wb1.png" style="width:700px;height:500px; center;"/&gt;
 
 ---
 ## **Comparing geom_bar with Miscrosoft Excel output**
-&lt;img src="picture/Urban_Rural_Proportion.jpg" style="width:600px;height:300px; center;"&gt;
+&lt;img src="picture/Urban_Rural_Proportion.png" width="600" height="500"/&gt;
 
 ---
 
@@ -378,7 +377,203 @@ ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
 
 ---
 ## **Results**
-&lt;img src="picture/wb2.png" style="width:800px;height:500px; center;"&gt;
+&lt;img src="picture/wb2.png" style="width:800px;height:500px; center;"/&gt;
+
+---
+class: center, middle
+
+# Week Nine
+---
+## **Reordering within the facets**
+
+```r
+Rural_Urban_lg %&gt;% 
+  filter(year %in% c("2017", "2018")) %&gt;% 
+ggplot(aes(
+  x= reorder_within(country, Total_Pop, Pop_Setting), 
+           y =Total_Pop, fill= country)) +
+  geom_bar(stat= "identity", show.legend = TRUE) +
+  scale_fill_brewer(palette = "Paired")+
+  geom_text(aes(label= Total_Pop), 
+            hjust=1, colour="black",size=4, angle=90, fontface= "bold") +
+  ylab("Proportion of population (%)") +
+  xlab("Countries") +
+  theme(axis.text.x = element_text(angle = 90, hjust =1, vjust=0.2)) +
+  scale_x_reordered()+
+  facet_wrap(Pop_Setting ~ year ,scales = "free", ncol=2)
+```
+
+
+---
+## **Results**
+&lt;img src="picture/wb3.png" style="width:800px;height:500px; center;"/&gt;
+
+
+---
+## Change the text of facet labels
+.pull-left[
+You can assign proper labels in your original data before plotting.
+
+The default value is `label_value` which displays only the value
+
+Common alternatives are:
+
+`label_both`: Displays both the value and the variable name
+`label_context`: Displays only the values or both the values and variables depending on whether multiple factors are faceted
+]
+
+.pull-right[
+
+```r
+library(tidyverse)
+library(tidytext)
+Rural_Urban_lg %&gt;% 
+  filter(year %in% c("2017", "2018")) %&gt;% 
+ggplot(aes(
+  x= reorder_within(country, Total_Pop, 
+                    Pop_Setting), 
+  y =Total_Pop, fill=country)) +
+  geom_bar(
+    stat= "identity", show.legend = TRUE) +
+  scale_fill_brewer(palette = "Paired")+
+  geom_text(aes(
+    label= Total_Pop), hjust=1, colour="black",
+    size=4, angle=90,fontface="bold") +
+  ylab("Proportion of population (%)") +
+  xlab("Countries") +
+  theme(axis.text.x = element_text(
+    angle = 90, hjust =1, vjust=0.2)) +
+  scale_x_reordered()+
+  facet_wrap(Pop_Setting ~ year,
+             scales = "free", ncol=2, 
+             labeller = label_value)
+```
+]
+
+---
+## **Results**
+&lt;img src="picture/wb4.png" style="width:800px;height:500px; center;"/&gt;
+
+---
+## **Continuation**
+
+```r
+Rural_Urban_lg %&gt;% 
+  filter(year %in% c("2017", "2018")) %&gt;% 
+ggplot(aes(
+  x= reorder_within(country, Total_Pop, Pop_Setting), 
+           y =Total_Pop, fill=country)) +
+  geom_bar(stat= "identity", show.legend = TRUE) +
+  scale_fill_brewer(palette = "Paired")+
+  geom_text(aes(label= Total_Pop), 
+            hjust=1, colour="black",size=4, angle=90, fontface="bold") +
+  ylab("Proportion of population (%)") +
+  xlab("Countries") +
+  theme(axis.text.x = element_text(
+    angle = 90, hjust =1, vjust=0.2)) +
+  scale_x_reordered()+
+  facet_wrap(Pop_Setting ~ year,
+             scales = "free", ncol=2, 
+             labeller = label_both)
+```
+
+---
+## **Results**
+&lt;img src="picture/wb5.png" style="width:800px;height:500px; center;"/&gt;
+
+---
+## **Renaming facet labels**
+
+
+```r
+Rural_Urban_lg$Pop_Setting &lt;- fct_recode(Rural_Urban_lg$Pop_Setting,
+                                Rural_Population = "Rural_Pop",
+                                Urban_Population = "Urban_Pop")
+
+Rural_Urban_lg$Pop_Setting = fct_relevel(Rural_Urban_lg$Pop_Setting,
+                       c("Rural_Population",
+                       "Urban_Population"))
+
+Rural_Urban_lg %&gt;% 
+  filter(year %in% c("2017", "2018")) %&gt;% 
+ggplot(aes(
+  x= reorder_within(country, Total_Pop, Pop_Setting), 
+                           y =Total_Pop, fill=country)) +
+  geom_bar(stat= "identity", show.legend = TRUE) +
+  scale_fill_brewer(palette = "Paired")+
+  geom_text(aes(label= Total_Pop), 
+            hjust=1, colour="black",size=4,angle=90, fontface="bold") +
+  ylab("Proportion of population (%)") +
+  xlab("Countries") +
+  theme(
+    axis.text.x = element_text(
+      angle = 90, hjust =1, vjust=0.2))+
+  scale_x_reordered()+
+  facet_wrap(Pop_Setting ~ year ,scales = "free", ncol=2, 
+             labeller = label_value)
+```
+
+---
+## **Results**
+&lt;img src="picture/wb6.png" style="width:800px;height:500px; center;"/&gt;
+
+
+---
+## **Changing the colour of facet labels**
+
+
+```r
+Rural_Urban_lg %&gt;% 
+  filter(year %in% c("2017", "2018")) %&gt;% 
+ggplot(aes(
+  x= reorder_within(country, Total_Pop, Pop_Setting), 
+                           y =Total_Pop, fill=country)) +
+  geom_bar(stat= "identity", show.legend = TRUE) +
+  scale_fill_brewer(palette = "Paired")+
+  geom_text(aes(label= Total_Pop), 
+            hjust=1, colour="black",size=4, angle=90, fontface="bold") +
+  ylab("Proportion of population (%)") +
+  xlab("Countries") +
+  theme(axis.text.x = element_text(angle = 90, hjust =1, vjust=0.2),
+    strip.text.x = element_text(
+      size = 12, color = "darkblue", face = "bold")) +
+  scale_x_reordered()+
+  facet_wrap(Pop_Setting ~ year ,scales = "free", 
+             labeller = label_value)
+```
+
+---
+## **Results**
+&lt;img src="picture/wb7.png" style="width:800px;height:500px; center;"/&gt;
+
+---
+## **Changing the colour of facet labels**
+Using the *[sape website](http://sape.inf.usi.ch/quick-reference/ggplot2/colour)*, you can find out the various colours to be used.
+
+```r
+Rural_Urban_lg %&gt;% 
+  filter(year %in% c("2017", "2018")) %&gt;% 
+ggplot(aes(x= reorder_within(
+  country, Total_Pop, Pop_Setting), y =Total_Pop, fill=country)) +
+  geom_bar(stat= "identity", show.legend = TRUE) +
+  scale_fill_brewer(palette = "Paired")+
+  geom_text(aes(label= Total_Pop), 
+            hjust=1, colour="black",size=4,angle=90, fontface="bold") +
+  ylab("Proportion of population (%)") +
+  xlab("Countries") +
+  theme(axis.text.x = element_text(angle = 90, hjust =1, vjust=0.2),
+    strip.text.x = element_text(
+      size = 12, color = "darkblue", face = "bold"),
+    strip.background = element_rect(
+      fill="yellow3", size=1,color="darkblue")) +
+  scale_x_reordered()+
+  facet_wrap(Pop_Setting ~ year ,scales = "free", 
+             labeller = label_value)
+```
+
+---
+## **Results**
+&lt;img src="picture/wb8.png" style="width:800px;height:500px; center;"/&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
