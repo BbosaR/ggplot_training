@@ -361,7 +361,7 @@ ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
 
 ---
 ## **Comparing geom_bar with Miscrosoft Excel output**
-<img src="picture/Urban_Rural_Proportion.png" style="width:600px;height:500px;"/>
+<img src="picture/wb1.png" style="width:600px;height:500px; centre;"/>
 
 ---
 
