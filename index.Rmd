@@ -318,7 +318,16 @@ ggplot(tips, aes(x=total_bill,
 ---
 ## **How to Add two categories**
 In order to add two categories, both the `rows` and `cols` arguments in `facet_grid` are used.
+```{r}
+ggplot(tips, aes(x=total_bill, 
+                 y=tip/total_bill)) + 
+  geom_point(shape=1) + 
+  facet_grid(rows = vars(sex),
+             cols = vars(day))
+```
 
+---
+## **Results**
 ![](picture/tips5.png)
 
 ---
@@ -573,3 +582,9 @@ ggplot(aes(x= reorder_within(
 ---
 ## **Results**
 <img src="picture/wb8.png" style="width:800px;height:500px; center;"/>
+
+
+```{r}
+
+```
+
