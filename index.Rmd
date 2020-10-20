@@ -1035,7 +1035,7 @@ barplot(day, ylab = 'Frequency', xlab = 'Week day', col = c(1,2,3,4,5), legend=T
 
 ```{r}
 Attendance = c(20,20,25,20,28)
-names(attendance) = c('Lect1', 'Lect2', 'Lect3','Lect4', 'Lect5')
+names(Attendance) = c('Lect1', 'Lect2', 'Lect3','Lect4', 'Lect5')
 Exam_score = c(30,35,38,35,32)
 Test_score = c(20,28,32,31,28)
 
@@ -1197,14 +1197,14 @@ col = c(1,2,3,4,5),legend=T)
 
 * To build a `ggplot`, we will use the following basic template that can be used for different types of plots:
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) + <GEOM$\_$FUNCTION>()
 ```
 
 
 # Importing data into R environment or console.
 
-```{r}
+```{r, eval=FALSE}
 train<-read.csv("training_data.csv", header=T)
 ```
 
@@ -1220,47 +1220,47 @@ library('tidyverse')
 
 * Use the `ggplot()` function and bind the plot to a specific data frame using `data` argument:
 
-```{r}
+```{r, eval = FALSE}
 ggplot(data = train)
 ```
 
 
 # Methods
 
-```{r}
+```{r,eval = FALSE}
 head(train) #... to visualize the data
 ```
 
 * Specify an aesthetic mapping (using the aesthetic `(aes)` function), and selecte the variables to be plotted by specifying how to present them in the graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = "", mapping = aes(x, y))
 ```
 ---
 # Producing plots with `ggplot2` Cont'd.
 
 * Add `geoms` - graphical representations of the data in the plot (points, lines, bars). ggplot2 offers many different geoms; we will use some common ones today, including:
-```{r}
+```{r, eval=FALSE}
 geom_point() # for scatter plots, dot plots, etc.
 ```
 
-```{r}
+```{r, eval=FALSE}
 geom_boxplot() # for boxplots
 ```
 
-```{r}
+```{r, eval=FALSE}
 geom_line()} # for trend lines, time series, etc.
 ```
 * `For instance`
-```{r}
+```{r, eval=FALSE}
 ggplot(data = "", mapping = aes())+ geom_point()
 ```
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = "", mapping = aes())+ geom_boxplot()
 ```
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = "", mapping = aes())+ geom_line()
 ```
 
@@ -1269,7 +1269,7 @@ ggplot(data = "", mapping = aes())+ geom_line()
 
 * We use `+` operator to add a `geom` to the plot. In this case, we use `geom_point()` because we want a scatter plot.
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = train, aes(x = weight, y = hindfoot_length)) +
 geom_point()
 ```
@@ -1289,7 +1289,7 @@ geom_point()
 
 * We can re-write the code above like this:
 
-```{r}
+```{r, eval=FALSE}
 scatterplot <- ggplot(data = train, aes(x = weight, y = hindfoot_length))
 
 scatterplot + geom_point() # to plot
@@ -1320,14 +1320,14 @@ scatterplot + geom_point() # to plot
 
 * This is the correct syntax for adding layers:
 
-```{r}
+```{r, eval=FALSE}
 scatterplot +
   geom_point()
 ```
 
 * This will not add the new layer and will return an error message:
 
-```{r}
+```{r, eval=FALSE}
 scatterplot 
 +geom_point()
 ```
@@ -1342,7 +1342,7 @@ scatterplot
 
 * We start by specifying the dataset, lay out the axes, and choose a geom:
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = train, aes(x = weight, y = hindfoot_length)) +
 geom_point()
 ```
@@ -1353,7 +1353,7 @@ geom_point()
 .pull-left[
 * We modify th plot by adding transparency (alpha) to avoid overplotting:
 
-```{r}
+```{r, eval=FALSE}
 scatmod <- ggplot(data = train, aes(x = weight, y = hindfoot_length)) 
 
 # to plot
@@ -1371,7 +1371,7 @@ geom_point(alpha = 0.1)
 .pull-left[
 * We can also add colours for all the points:
 
-```{r}
+```{r, eval=FALSE}
 scatmod2 <- ggplot(data = train, aes(x = weight, y = hindfoot_length)) 
 
 # to plot
@@ -1389,7 +1389,7 @@ geom_point(alpha = 0.1, color ='blue')
 .pull-left[
 * We can also colour each species in the plot differently.
 
-```{r}
+```{r, eval=FALSE}
 scatmod3 <- ggplot(data = train, mapping = aes(x = weight, y = hindfoot_length)) 
 
 # to plot
@@ -1413,7 +1413,7 @@ geom_point(alpha = 0.1, aes(color = species_id))
 
 * For instance, let's visualize the distribution of weight within each species.
 
-```{r}
+```{r, eval=FALSE}
 scatmod4 <- ggplot(data = train, mapping = aes(x = species_id, y = weight)) 
 
 # to plot
@@ -1432,7 +1432,7 @@ scatmod4 + geom_boxplot()
 
 * Adding points to the boxplot to have a good idea of the number of measurements and of their distribution:
 
-```{r}
+```{r, eval=FALSE}
 scatmod5 <- ggplot(data = train, mapping = aes(x = species_id, y = weight)) 
 
 # to plot
@@ -1452,14 +1452,14 @@ scatmod5 + geom_boxplot(alpha = 0) + geom_jitter(alpha = 0.3, color = "tomato")
 .pull-left[
 * To generate time series data from the dataset, we group the data and count records within each group.
 
-```{r}
+```{r, eval=FALSE}
 time_yearly <- train%>%
   count(year, genus)
 ```
 
 * We can visualize the timelapse as a line plot with years on the x-axis and counts on the y-axis.
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = time_yearly, aes(x = year, y = n)) + geom_line()
 ```
 ]
@@ -1474,7 +1474,7 @@ ggplot(data = time_yearly, aes(x = year, y = n)) + geom_line()
 .pull-left[
 * Unlikely, this does not work because we plotted data for all the genera together. We need to tell `ggplot` to draw a line for each genus by modifying the aesthetic function to include group = `genus`
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = time_yearly, aes(x = year, y = n, group=genus)) + geom_line()
 ```
 
@@ -1490,7 +1490,7 @@ ggplot(data = time_yearly, aes(x = year, y = n, group=genus)) + geom_line()
 .pull-left[
 * Let's add colour to distinguish the species and get legend.
 
-```{r}
+```{r, eval=FALSE}
 ggplot(data = time_yearly, aes(x = year, y = n, color = genus)) + geom_line()
 ```
 ]
@@ -1570,6 +1570,8 @@ library(reshape2)
 
 * Inspect the variables in `tips` data set from `reshape` library
 ```{r}
+library(ggplot2)
+library(reshape2)
 names(tips)
 head(tips)
 str(tips)
@@ -1633,7 +1635,7 @@ Using WDI data from the World Bank, population demographics can be categorised a
 Using the 'Rural_Urban_lg.csv' file, first inspect the variables in the dataset
 
 
-```{r}
+```{r, eval=FALSE}
 Rural_Urban_lg <- read.csv("~/UI_LISA/Training_2/ggplot_training/Data/Rural_Urban_lg.csv", 
                           header = TRUE, stringsAsFactors = FALSE)
 names(Rural_Urban_lg) # To know the list of all variables 
@@ -1645,7 +1647,7 @@ tail(Rural_Urban_lg) # To know the last 6 rows (observations)
 
 ---
 ## **Plotting the bar chart**
-```{r}
+```{r, eval=FALSE}
 ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
   geom_bar(aes(reorder(country, Total_Pop),Total_Pop),
            stat= "identity", show.legend = TRUE) +
@@ -1671,7 +1673,7 @@ ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
 
 ## **Using facet_wrap**
 
-```{r}
+```{r, eval=FALSE}
 ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
   geom_bar(aes(reorder(country, Total_Pop),Total_Pop),
            stat= "identity", show.legend = TRUE) +
@@ -1694,7 +1696,7 @@ class: center, middle
 # Week Nine
 ---
 ## **Reordering within the facets**
-```{r}
+```{r, eval=FALSE}
 Rural_Urban_lg %>% 
   filter(year %in% c("2017", "2018")) %>% 
 ggplot(aes(
@@ -1731,7 +1733,7 @@ Common alternatives are:
 ]
 
 .pull-right[
-```{r eval=FALSE}
+```{r, eval=FALSE}
 library(tidyverse)
 library(tidytext)
 Rural_Urban_lg %>% 
@@ -1763,7 +1765,7 @@ ggplot(aes(
 
 ---
 ## **Continuation**
-```{r eval=FALSE}
+```{r, eval=FALSE}
 Rural_Urban_lg %>% 
   filter(year %in% c("2017", "2018")) %>% 
 ggplot(aes(
@@ -1790,7 +1792,7 @@ ggplot(aes(
 ---
 ## **Renaming facet labels**
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 Rural_Urban_lg$Pop_Setting <- fct_recode(Rural_Urban_lg$Pop_Setting,
                                 Rural_Population = "Rural_Pop",
                                 Urban_Population = "Urban_Pop")
@@ -1826,7 +1828,7 @@ ggplot(aes(
 ---
 ## **Changing the colour of facet labels**
 
-```{r eval=FALSE}
+```{r, eval=FALSE}
 Rural_Urban_lg %>% 
   filter(year %in% c("2017", "2018")) %>% 
 ggplot(aes(
@@ -1853,7 +1855,7 @@ ggplot(aes(
 ---
 ## **Changing the colour of facet labels**
 Using the *[sape website](http://sape.inf.usi.ch/quick-reference/ggplot2/colour)*, you can find out the various colours to be used.
-```{r eval=FALSE}
+```{r, eval=FALSE}
 Rural_Urban_lg %>% 
   filter(year %in% c("2017", "2018")) %>% 
 ggplot(aes(x= reorder_within(
@@ -1877,3 +1879,332 @@ ggplot(aes(x= reorder_within(
 ---
 ## **Results**
 <img src="picture/wb8.png" style="width:800px;height:500px; center;"/>
+
+
+---
+class: center, middle
+
+# Week Ten (ggplot extensions)
+
+`autoplotly` <br>
+`GGally` <br>
+`ggpubr` <br>
+`ggstatplot` <br>
+`survminer` <br>
+`gganimate` <br>
+`ggpol` <br>
+`Spatial Maps` <br>
+`and lots more`<br>
+
+For more on these visit (https://exts.ggplot2.tidyverse.org/gallery/)[https://exts.ggplot2.tidyverse.org/gallery/]
+
+---
+
+## `autoplotly` (Terry Tang Yuan)
+
+* Automatic generation of interactive visualizations for popular statistical results
+
+* It gives a `plotly` version of the `autoplot()` version of the `ggforge` package.
+
+.pull-left[
+
+```{r, eval=FALSE, echo=TRUE}
+library(autoplotly)
+library(ggfortify)
+mtcars <- mtcars %>% mutate(gear = factor(gear))
+autoplotly(prcomp(mtcars[c(5, 6, 7)]), data = mtcars,
+  colour = 'gear', frame = TRUE)
+```
+
+]
+
+.pull-right[
+
+```{r, eval=TRUE, echo=FALSE, fig.width=5, fig.height=5}
+library(autoplotly)
+library(ggfortify)
+mtcars <- mtcars %>% mutate(gear = factor(gear))
+autoplotly(prcomp(mtcars[c(5, 6, 7)]), data = mtcars,
+  colour = 'gear', frame = TRUE)
+```
+
+]
+
+---
+
+## GGAlly (Barret Schloerke et al.)
+
+* Extensions of ggplot to reduce geom combinations
+
+.pull-left[
+```{r, eval=FALSE, echo=TRUE}
+library(GGally)
+d1 <- read.csv("Data/data2.csv", header = T)
+d1 %>% 
+  dplyr::select(Thermal.C, Thermal.D , S.H , Temp  ,M.C) %>%
+  ggcorr(palette = "RdBu", label = TRUE)
+```
+]
+
+
+.pull-right[
+```{r, eval=TRUE, echo=FALSE}
+library(GGally)
+d1 <- read.csv("Data/data2.csv", header = T)
+d1 %>% 
+  dplyr::select(Thermal.C, Thermal.D , S.H , Temp  ,M.C) %>%
+  ggcorr(palette = "RdBu", label = TRUE)
+```
+]
+
+---
+
+## GGAlly (Barret Schloerke et al.)
+
+* ggplot version of `pairs()` in base **R**.
+
+.pull-left[
+```{r, eval=FALSE, echo=TRUE}
+library(GGally)
+d1 <- read.csv("Data/data2.csv", header = T)
+d1 %>% 
+  dplyr::select(Thermal.C, Thermal.D , S.H , Temp  ,M.C) %>%
+  ggpairs(.)
+```
+]
+
+
+.pull-right[
+```{r, eval=TRUE, echo=FALSE}
+library(GGally)
+d1 <- read.csv("Data/data2.csv", header = T)
+d1 %>% 
+  dplyr::select(Thermal.C, Thermal.D , S.H , Temp  ,M.C) %>%
+  ggpairs(.)
+```
+]
+
+---
+
+## ggpubr (Alboukadel Kassambara)
+
+* The aim is to make publication ready plots with minimal codes.
+
+.pull-left[
+
+```{r, eval=FALSE, echo=TRUE, warning=FALSE}
+library(ggpubr)
+d2 <- read.table("Data/Asejire_WC.txt", header = T)
+d2 <- d2 %>% mutate(Year = factor(Year))
+comps <- list(c('2003', '2004'), c('2003', '2005'), 
+              c('2003', '2006'), c('2003', '2007'))
+ggboxplot(d2, x = "Year", y = "PH",
+                color = "Year", palette = 'Dark2',
+                add = "jitter", shape = "Year") + 
+  stat_compare_means(comparisons = comps, method = 't.test') +        # Add pairwise comparisons p-value
+  stat_compare_means(label.y = 8.6)                # Add global p-value
+```
+
+]
+
+.pull-right[
+
+```{r, eval=TRUE, echo=FALSE, warning=FALSE}
+library(ggpubr)
+d2 <- read.table("Data/Asejire_WC.txt", header = T)
+d2 <- d2 %>% mutate(Year = factor(Year))
+comps <- list(c('2003', '2004'), c('2003', '2005'), 
+              c('2003', '2006'), c('2003', '2007'))
+ggboxplot(d2, x = "Year", y = "PH",
+                color = "Year", palette = 'Dark2',
+                add = "jitter", shape = "Year") + 
+  stat_compare_means(comparisons = comps, method = 't.test') +        # Add pairwise comparisons p-value
+  stat_compare_means(label.y = 8.6)         
+```
+]
+
+---
+
+## ggstatplot (Indrajeet Patil)
+
+* Also for publication ready plots
+
+.pull-left[
+```{r, eval=FALSE, echo=TRUE, warning=FALSE}
+library(ggstatsplot)
+ggstatsplot::ggbetweenstats(
+  data = d2,
+  x = Year,
+  y = Fe,
+  title = "Distribution of Fe between 2003-2007"
+)
+```
+]
+
+.pull-right[
+```{r, eval=TRUE, echo=FALSE, warning=FALSE}
+library(ggstatsplot)
+ggstatsplot::ggbetweenstats(
+  data = d2,
+  x = Year,
+  y = Fe,
+  title = "Distribution of Fe at Asejire between 2003-2007"
+)
+```
+]
+
+* provides fucntions to annotate bar, pie, linear models and meta-anlysis.
+
+---
+
+## survminer
+
+.pull-left[
+```{r, eval=FALSE, echo=TRUE, warning=FALSE}
+library(survival)
+library(survminer)
+sfit <- survfit(Surv(time, status) ~ voltage, data = capacitor)
+ggsurvplot(sfit,
+           legend.title = "Voltage",
+           palette = 'Dark2', 
+           conf.int = TRUE,
+           pval = TRUE,
+           risk.table = TRUE, 
+           risk.table.y.text.col = TRUE
+          )
+```
+]
+
+.pull-right[
+```{r, eval=TRUE, echo=FALSE, warning=FALSE}
+library(survival)
+library(survminer)
+sfit <- survfit(Surv(time, status) ~ voltage, data = capacitor)
+ggsurvplot(sfit,
+           legend.title = "Voltage",
+           palette = 'Dark2', 
+           conf.int = TRUE,
+           pval = TRUE,
+           risk.table = TRUE, 
+           risk.table.y.text.col = TRUE
+          )
+```
+]
+
+
+
+---
+
+## gganimate (Thomas Lin Pedersen)
+
+* Awesome way to animate your plots. The package really packs a punch.
+
+.pull-left[
+
+```{r, echo=TRUE, eval=FALSE, warning=FALSE}
+library(gganimate)
+d2 %>% ggplot(aes(Month, PH, group = Year)) + 
+  geom_line() + 
+  geom_segment(aes(xend = 12, yend = PH), linetype = 2, colour = 'grey') + 
+  geom_point(size = 4) + 
+  geom_text(aes(x = 12.1, label = Year), hjust = 0) + 
+  transition_reveal(Month) + 
+  coord_cartesian(clip = 'off') + 
+  labs(title = 'Ph of Asejire', y = 'Ph') + 
+  theme_minimal() + 
+  theme(plot.margin = margin(5.5, 40, 5.5, 5.5))
+```
+]
+
+
+.pull-right[
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE}
+library(gganimate)
+d2 %>% ggplot(aes(Month, PH, group = Year)) + 
+  geom_line() + 
+  geom_segment(aes(xend = 12, yend = PH), linetype = 2, colour = 'grey') + 
+  geom_point(size = 4) + 
+  geom_text(aes(x = 12.1, label = Year), hjust = 0) + 
+  transition_reveal(Month) + 
+  coord_cartesian(clip = 'off') + 
+  labs(title = 'Ph of Asejire', y = 'Ph') + 
+  theme_minimal() + 
+  theme(plot.margin = margin(5.5, 40, 5.5, 5.5))
+```
+]
+
+---
+
+## ggpol (Frederik Tiedemann)
+
+.pull-left[
+
+```{r, echo=TRUE, eval=FALSE, warning=FALSE}
+library(ggpol)
+house_of_rep <- data.frame(Parties = factor(c('APC', 'PDP', 'Others'),
+                                            levels = c('APC', 'PDP', 'Others')),
+                           Seats = c(204, 118, 15),
+                           colors = c('skyblue1', 'red', 'grey82'),
+                           stringsAsFactors = FALSE
+)
+
+house_of_rep %>%
+  ggplot() + 
+  geom_parliament(aes(seats = Seats, fill = Parties), color = "black") + 
+  scale_fill_manual(values = house_of_rep$colors, 
+                    labels = house_of_rep$Parties) +
+  coord_fixed() + 
+  theme_void()
+                           
+```
+
+]
+
+.pull-right[
+
+```{r, echo=FALSE, eval=TRUE, warning=FALSE}
+library(ggpol)
+house_of_rep <- data.frame(Parties = factor(c('APC', 'PDP', 'Others'),
+                                            levels = c('APC', 'PDP', 'Others')),
+                           Seats = c(204, 118, 15),
+                           colors = c('skyblue1', 'red', 'grey82'),
+                           stringsAsFactors = FALSE
+)
+
+house_of_rep %>%
+  ggplot() + 
+  geom_parliament(aes(seats = Seats, fill = Parties), color = "black") + 
+  scale_fill_manual(values = house_of_rep$colors, 
+                    labels = house_of_rep$Parties) +
+  coord_fixed() + 
+  theme_void()
+                           
+```
+
+]
+
+---
+
+## Spatial maps 
+
+
+<img src="picture/NNMR_by_region.png" width="800" height="800">
+
+
+---
+center, middle
+
+## Thank You!
+
+<h3> From all of us to you, THANK YOU! `r emo::ji('pray')``r emo::ji('pray')``r emo::ji('pray')`
+
+
+
+
+
+
+
+
+
+
