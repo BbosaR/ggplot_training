@@ -583,7 +583,7 @@ class: center, middle
 ---
 
 # Legends
-
+* Legends and themes aren't really about the plot, they are about art and communication.
 .pull-left[
 ```{r chk18a, eval = FALSE}
 naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
@@ -602,14 +602,16 @@ naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>%
 ```
 ]
 
-* Legends and themes aren't really about the plot, they are about art and communication.
-* 
-
 ---
 
 # Customizing Legend title
 
 .pull-left[
+* To be able to customize a legend, you must know the aesthetics being summarised in the legend.
+
+* For the plot above, the `color` aesthetics is what is summarised in the legend.
+
+* The same can be done for any other aesthetics.
 ```{r chk19a, eval = FALSE}
 naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
   ggplot(aes(x = Day, y = Cases, group = States, 
@@ -629,17 +631,16 @@ naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>%
 ```
 ]
 
-* To be able to customize a legend, you must know the aesthetics being summarised in the legend.
-
-* For the plot above, the `color` aesthetics is what is summarised in the legend.
-
-* The same can be done for any other aesthetics.
 
 ---
 
 # Customizing Legend Position
 
 .pull-left[
+
+* The `legend.position` option in the `theme()` function allows you to place legend in the position of your choice.
+
+* You should type `?theme` in your `R` session. More about this in theme customization 
 ```{r chk20a, eval = FALSE}
 naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
   ggplot(aes(x = Day, y = Cases, group = States, 
@@ -661,15 +662,16 @@ naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>%
 ```
 ]
 
-* The `legend.position` option in the `theme()` function allows you to place legend in the position of your choice.
-
-* You should type `?theme` in your `R` session. More about this in theme customization 
 
 ---
 
 # Customizing Legend size
 
 .pull-left[
+* The `legend.title` and `legend.text` options allows for customization of texts and titles in the legend.
+
+* Note that we used the function `element_text()`. Others include; `element_rect()`, `element_blank()`, `element_line()`
+
 ```{r chk21a, eval = FALSE}
 naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
   ggplot(aes(x = Day, y = Cases, group = States, 
@@ -695,10 +697,6 @@ naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>%
 ```
 ]
 
-* The `legend.title` and `legend.text` options allows for customization of texts and titles in the legend.
-
-* Note that we used the function `element_text()`. Others include; `element_rect()`, `element_blank()`, `element_line()`
-
 ---
 
 # Themes
@@ -716,6 +714,10 @@ naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>%
 # Available Themes
 
 .pull-left[
+
+* Note that we place `theme_minimal()` before `theme()`. 
+
+* We do this to override the default options for `legend.title` and `legend.text` in `theme_minimal()` which implies that we are already customizing `theme_minimal()`.
 ```{r chk22a, eval = FALSE}
 naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
   ggplot(aes(x = Day, y = Cases, group = States, 
@@ -743,15 +745,13 @@ naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>%
 ```
 ]
 
-* Note that we place `theme_minimal()` before `theme()`. 
-
-* We do this to override the default options for `legend.title` and `legend.text` in `theme_minimal()` which implies that we are already customizing `theme_minimal()`.
-
 ---
 
 # Customising Themes 1.
 
 .pull-left[
+* `axis.line.x` and `axis.line.y` are variants of the `axis.line` argument.
+
 ```{r chk23a, eval = FALSE}
 naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>% 
   ggplot(aes(x = Day, y = Cases, group = States, 
@@ -782,8 +782,6 @@ naija_covid %>% filter(States %in% c('Lagos', 'Oyo', 'Ogun')) %>%
                                  linetype = 'dashed'))
 ```
 ]
-
-* `axis.line.x` and `axis.line.y` are variants of the `axis.line` argument.
 
 ---
 
@@ -901,14 +899,63 @@ class: center, middle
 ---
 
 # Week four topic one
+```{r chk26a, eval=FALSE}
+install.packages("maps")
+```
+
+
+```{r chk26b}
+library(ggplot2)
+library(dplyr)
+library(maps)
+library(viridis)
+theme_set(
+  theme_void()
+  )
+```
 
 ---
 
-# Week four topic two
+# Create a simple world map
 
+```{r chk27}
+world_map <- map_data("world")
+ggplot(world_map, aes(x = long, y = lat, group = group)) +
+  geom_polygon(fill="lightgray", colour = "white")
+```
 ---
 
-# Week four topic three
+# Maps for specific regions
+```{r chk28}
+some.eu.countries <- c(
+  "Portugal", "Spain", "France", "Switzerland", "Germany",
+  "Austria", "Belgium", "UK", "Netherlands",
+  "Denmark", "Poland", "Italy", 
+  "Croatia", "Slovenia", "Hungary", "Slovakia",
+  "Czech republic"
+)
+some.eu.maps <- map_data("world", region = some.eu.countries)
+
+# Compute the centroid as the mean longitude and lattitude
+# Used as label coordinate for country's names
+region.lab.data <- some.eu.maps %>%
+  group_by(region) %>%
+  summarise(long = mean(long), lat = mean(lat))
+```
+
+---
+# Visualize
+```{r chk29}
+ggplot(some.eu.maps, aes(x = long, y = lat)) +
+  geom_polygon(aes( group = group, fill = region))+
+  geom_text(aes(label = region), data = region.lab.data,  size = 3, hjust = 0.5)+ scale_fill_viridis_d() + theme_void() + 
+  theme(legend.position = "none")
+```
+
+---
+class: center, middle
+
+# Week five
 
 ---
 
@@ -930,6 +977,7 @@ class: center, middle
 
 
 .pull-right[ `Olubusoye & Akintande`]
+
 ---
 
 # Week five topic one
@@ -1021,35 +1069,30 @@ class: center, middle
 # Types of Plot: Barplot
 .pull-left[
 * `Bar plots` [the most basic way to present data, but it can be useful in achieving results through simplicity and clarity.]
-
-```{r}
+```{r chk30a, eval=FALSE}
 day = c(4,8,12,5,2)
 names(day) = c('Mon', 'Tue', 'Wed','Thur', 'Fri')
 barplot(day, ylab = 'Frequency', xlab = 'Week day', col = c(1,2,3,4,5), legend=T)
 ```
-<img src="picture/bar.jpg" width="300" height="250">
-
 ]
-
 .pull-right[
-
-```{r}
+<img src="picture/bar.jpg" width="300" height="250">
+]
+---
+# Types of Plot Cont'd: Barplot
+```{r chk30b, eval=FALSE}
 Attendance = c(20,20,25,20,28)
-names(attendance) = c('Lect1', 'Lect2', 'Lect3','Lect4', 'Lect5')
+names(Attendance) = c('Lect1', 'Lect2', 'Lect3','Lect4', 'Lect5')
 Exam_score = c(30,35,38,35,32)
 Test_score = c(20,28,32,31,28)
 
 D = cbind(Exam_score,Test_score,Attendance)
 
-barplot(D, ylab = 'Frequency', xlab = 'Student Items',
-col = c(1,2,3,4,5),legend=T)
-
+barplot(D, ylab = 'Frequency', xlab = 'Student Items', col = c(1,2,3,4,5),legend=T)
 ```
+
 <img src="picture/bar1.jpg" width="300" height="250">
 
-<img src="picture/bar2.jpg" width="300" height="250">
-
-]
 
 ---
 
@@ -1179,7 +1222,10 @@ col = c(1,2,3,4,5),legend=T)
 
 
 ---
+class: center, middle
 
+# Week six
+---
 # Week five topic two: Producing plots with `ggplot2`
 
 * `ggplot2` is a plotting package that makes it simple to create complex plots from data in a data frame. It provides a more programmatic interface for specifying what variables to plot, how they are displayed, and general visual properties.
@@ -1197,21 +1243,21 @@ col = c(1,2,3,4,5),legend=T)
 
 * To build a `ggplot`, we will use the following basic template that can be used for different types of plots:
 
-```{r}
+```{r chk31a, eval=FALSE}
 ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) + <GEOM$\_$FUNCTION>()
 ```
 
 
 # Importing data into R environment or console.
 
-```{r}
-train<-read.csv("training_data.csv", header=T)
-```
+```{r chk31b}
+train <- read.csv("Data/training_data.csv", header=TRUE)
+``` 
 
 * `Load package`
 
-```{r}
-library('tidyverse')
+```{r chk31c}
+library("tidyverse")
 ```
 
 ---
@@ -1220,67 +1266,66 @@ library('tidyverse')
 
 * Use the `ggplot()` function and bind the plot to a specific data frame using `data` argument:
 
-```{r}
+```{r chk32}
 ggplot(data = train)
 ```
 
-
+---
 # Methods
 
-```{r}
+```{r chk33}
 head(train) #... to visualize the data
 ```
 
 * Specify an aesthetic mapping (using the aesthetic `(aes)` function), and selecte the variables to be plotted by specifying how to present them in the graph, e.g. as x/y positions or characteristics such as size, shape, color, etc.
 
-```{r}
+```{r chk34, eval=FALSE}
 ggplot(data = "", mapping = aes(x, y))
 ```
 ---
 # Producing plots with `ggplot2` Cont'd.
 
 * Add `geoms` - graphical representations of the data in the plot (points, lines, bars). ggplot2 offers many different geoms; we will use some common ones today, including:
-```{r}
+```{r chk35a, eval=FALSE}
 geom_point() # for scatter plots, dot plots, etc.
 ```
 
-```{r}
+```{r chk35b, eval=FALSE}
 geom_boxplot() # for boxplots
 ```
 
-```{r}
-geom_line()} # for trend lines, time series, etc.
+```{r chk35c, eval=FALSE}
+geom_line() # for trend lines, time series, etc.
 ```
 * `For instance`
-```{r}
+```{r chk35d, eval=FALSE}
 ggplot(data = "", mapping = aes())+ geom_point()
 ```
 
-```{r}
+```{r chk35e, eval=FALSE}
 ggplot(data = "", mapping = aes())+ geom_boxplot()
 ```
 
-```{r}
+```{r chk35f, eval=FALSE}
 ggplot(data = "", mapping = aes())+ geom_line()
 ```
 
 ---
 # Producing scatter plots
-
+.pull-left[
 * We use `+` operator to add a `geom` to the plot. In this case, we use `geom_point()` because we want a scatter plot.
 
-```{r}
+```{r chk36, eval=FALSE}
 ggplot(data = train, aes(x = weight, y = hindfoot_length)) +
 geom_point()
 ```
-.pull-left[
-<img src="picture/scatter.jpg" width="380" height="350">]
-
-.pull-right[
-
 * The `"+"` operator is useful for modifying existing `ggplot` objects. 
 
 * That is, we can easily set up plot template and explore different types of plots.
+]
+.pull-right[
+
+<img src="picture/scatter.jpg" width="380" height="350">
 ]
 
 ---
@@ -1289,9 +1334,8 @@ geom_point()
 
 * We can re-write the code above like this:
 
-```{r}
+```{r chk37, eval= FALSE}
 scatterplot <- ggplot(data = train, aes(x = weight, y = hindfoot_length))
-
 scatterplot + geom_point() # to plot
 ```
 
@@ -1312,48 +1356,45 @@ scatterplot + geom_point() # to plot
 
 # Scatter plot Cont'd
 
-.pull-left[
-
 * The '+' sign used to add layers must be placed at the end of each line containing a layer. 
 
 * If, otherwise, the `'+'` sign is added in the line before the other layer, ggplot2 will not add the new layer and will return an error message.
 
 * This is the correct syntax for adding layers:
 
-```{r}
+---
+.pull-left[
+```{r chk38}
+scatterplot <- ggplot(data = train, aes(x = weight, y = hindfoot_length))
 scatterplot +
   geom_point()
 ```
-
+]
+.pull-right[
 * This will not add the new layer and will return an error message:
 
-```{r}
+```{r chk39, eval=FALSE}
+scatterplot <- ggplot(data = train, aes(x = weight, y = hindfoot_length))
 scatterplot 
-+geom_point()
++ geom_point()
 ```
-
 ]
 
-.pull-right[
-
+---
 # Building plots iteratively
-
 * Building plots with `ggplot2` is typically an iterative process.
-
 * We start by specifying the dataset, lay out the axes, and choose a geom:
-
-```{r}
+```{r chk40}
 ggplot(data = train, aes(x = weight, y = hindfoot_length)) +
 geom_point()
 ```
-]
 
 ---
 # Scatter plot Cont'd
 .pull-left[
 * We modify th plot by adding transparency (alpha) to avoid overplotting:
 
-```{r}
+```{r chk41, eval=FALSE}
 scatmod <- ggplot(data = train, aes(x = weight, y = hindfoot_length)) 
 
 # to plot
@@ -1371,7 +1412,7 @@ geom_point(alpha = 0.1)
 .pull-left[
 * We can also add colours for all the points:
 
-```{r}
+```{r chk42, eval=FALSE}
 scatmod2 <- ggplot(data = train, aes(x = weight, y = hindfoot_length)) 
 
 # to plot
@@ -1388,21 +1429,17 @@ geom_point(alpha = 0.1, color ='blue')
 # Scatter plot Cont'd
 .pull-left[
 * We can also colour each species in the plot differently.
-
-```{r}
+```{r chk43, eval=FALSE}
 scatmod3 <- ggplot(data = train, mapping = aes(x = weight, y = hindfoot_length)) 
 
 # to plot
 scatmod3 +
 geom_point(alpha = 0.1, aes(color = species_id))
 ```
-
 ]
 
 .pull-right[
 <img src="picture/scatter4.jpg" width="320" height="300">]
-
-
 
 ---
 # Producing Boxplot
@@ -1413,7 +1450,7 @@ geom_point(alpha = 0.1, aes(color = species_id))
 
 * For instance, let's visualize the distribution of weight within each species.
 
-```{r}
+```{r chk44, eval=FALSE}
 scatmod4 <- ggplot(data = train, mapping = aes(x = species_id, y = weight)) 
 
 # to plot
@@ -1432,7 +1469,7 @@ scatmod4 + geom_boxplot()
 
 * Adding points to the boxplot to have a good idea of the number of measurements and of their distribution:
 
-```{r}
+```{r chk45, eval=FALSE}
 scatmod5 <- ggplot(data = train, mapping = aes(x = species_id, y = weight)) 
 
 # to plot
@@ -1446,20 +1483,24 @@ scatmod5 + geom_boxplot(alpha = 0) + geom_jitter(alpha = 0.3, color = "tomato")
 
 
 ---
+class: center, middle
 
-# Week five topic three: Producing Time series plot
+# Week seven
+
+---
+# Week seven topic three: Producing Time series plot
 
 .pull-left[
 * To generate time series data from the dataset, we group the data and count records within each group.
 
-```{r}
+```{r chk46a}
 time_yearly <- train%>%
   count(year, genus)
 ```
 
 * We can visualize the timelapse as a line plot with years on the x-axis and counts on the y-axis.
 
-```{r}
+```{r chk46b, eval=FALSE}
 ggplot(data = time_yearly, aes(x = year, y = n)) + geom_line()
 ```
 ]
@@ -1474,7 +1515,7 @@ ggplot(data = time_yearly, aes(x = year, y = n)) + geom_line()
 .pull-left[
 * Unlikely, this does not work because we plotted data for all the genera together. We need to tell `ggplot` to draw a line for each genus by modifying the aesthetic function to include group = `genus`
 
-```{r}
+```{r chk47, eval=FALSE}
 ggplot(data = time_yearly, aes(x = year, y = n, group=genus)) + geom_line()
 ```
 
@@ -1490,7 +1531,7 @@ ggplot(data = time_yearly, aes(x = year, y = n, group=genus)) + geom_line()
 .pull-left[
 * Let's add colour to distinguish the species and get legend.
 
-```{r}
+```{r chk48, eval=FALSE}
 ggplot(data = time_yearly, aes(x = year, y = n, color = genus)) + geom_line()
 ```
 ]
@@ -1499,33 +1540,6 @@ ggplot(data = time_yearly, aes(x = year, y = n, color = genus)) + geom_line()
 
 <img src="picture/time3.jpg" width="450" height="300">
 ]
-
----
-class: center, middle
-
-# Week six
-
----
-
-# Week six topic one
-
----
-
-# Week six topic two
-
----
-
-# Week six topic three
-
-
----
-# Week seven topic one
-
----
-# week seven topic two
-
----
-# week seven topic three
 
 ---
 class: center, middle
@@ -1569,7 +1583,8 @@ library(ggplot2)
 library(reshape2)
 
 * Inspect the variables in `tips` data set from `reshape` library
-```{r}
+```{r chk49}
+library(reshape2)
 names(tips)
 head(tips)
 str(tips)
@@ -1587,7 +1602,7 @@ be used to split the dataset into facets.
 
 * To divide by "sex" vertically;-
 
-```{r}
+```{r chk50, eval=FALSE}
 ggplot(tips, aes(x=total_bill, 
                  y=tip/total_bill)) + 
   geom_point(shape=1) + 
@@ -1596,7 +1611,7 @@ ggplot(tips, aes(x=total_bill,
 
 * To divide by "sex' horizontally;-
 
-```{r}
+```{r chk51, eval=FALSE}
 library(ggplot2)
 library(reshape2)
 ggplot(tips, aes(x=total_bill, 
@@ -1622,30 +1637,40 @@ ggplot(tips, aes(x=total_bill,
 ---
 ## **How to Add two categories**
 In order to add two categories, both the `rows` and `cols` arguments in `facet_grid` are used.
+```{r chk52, eval=FALSE}
+ggplot(tips, aes(x=total_bill, 
+                 y=tip/total_bill)) + 
+  geom_point(shape=1) + 
+  facet_grid(rows = vars(sex),
+             cols = vars(day))
+```
 
+---
+## **Results**
 ![](picture/tips5.png)
 
 ---
 ## **Using geom_bar chart**
-
+.pull-left[
 Using WDI data from the World Bank, population demographics can be categorised as Urban and Rural. Data was obtained from 2015 to 2018 for the Southern Africa countries namely Eswatini, Angola, Botswana, Malawi, South Africa, Mozambique, Zambia , Zimbabwe, Namibia,Lesotho, South Africa, Botswana and Angola.
 
 Using the 'Rural_Urban_lg.csv' file, first inspect the variables in the dataset
-
-
-```{r}
-Rural_Urban_lg <- read.csv("~/UI_LISA/Training_2/ggplot_training/Data/Rural_Urban_lg.csv", 
-                          header = TRUE, stringsAsFactors = FALSE)
+```{r chk53a}
+Rural_Urban_lg <- read.csv("~/UI_LISA/Training_2/ggplot_training/Data/Rural_Urban_lg.csv", header = TRUE, stringsAsFactors = FALSE)
 names(Rural_Urban_lg) # To know the list of all variables 
 str(Rural_Urban_lg) # To know the structure of the given variables
+```
+]
+.pull-right[
+```{rchk53b}
 head(Rural_Urban_lg) # To know the first 6 rows (observations)
 tail(Rural_Urban_lg) # To know the last 6 rows (observations)
 ```
-
+]
 
 ---
 ## **Plotting the bar chart**
-```{r}
+```{r chk54, eval=FALSE}
 ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
   geom_bar(aes(reorder(country, Total_Pop),Total_Pop),
            stat= "identity", show.legend = TRUE) +
@@ -1671,7 +1696,7 @@ ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
 
 ## **Using facet_wrap**
 
-```{r}
+```{r chk55, eval=FALSE}
 ggplot(Rural_Urban_lg, aes(country, Total_Pop, fill= country)) +
   geom_bar(aes(reorder(country, Total_Pop),Total_Pop),
            stat= "identity", show.legend = TRUE) +
@@ -1694,7 +1719,8 @@ class: center, middle
 # Week Nine
 ---
 ## **Reordering within the facets**
-```{r}
+```{r chk56, eval=FALSE}
+library(tidytext)
 Rural_Urban_lg %>% 
   filter(year %in% c("2017", "2018")) %>% 
 ggplot(aes(
@@ -1731,7 +1757,7 @@ Common alternatives are:
 ]
 
 .pull-right[
-```{r eval=FALSE}
+```{r chk57, eval=FALSE}
 library(tidyverse)
 library(tidytext)
 Rural_Urban_lg %>% 
@@ -1763,7 +1789,7 @@ ggplot(aes(
 
 ---
 ## **Continuation**
-```{r eval=FALSE}
+```{r chk58, eval=FALSE}
 Rural_Urban_lg %>% 
   filter(year %in% c("2017", "2018")) %>% 
 ggplot(aes(
@@ -1790,7 +1816,7 @@ ggplot(aes(
 ---
 ## **Renaming facet labels**
 
-```{r eval=FALSE}
+```{r chk59, eval=FALSE}
 Rural_Urban_lg$Pop_Setting <- fct_recode(Rural_Urban_lg$Pop_Setting,
                                 Rural_Population = "Rural_Pop",
                                 Urban_Population = "Urban_Pop")
@@ -1826,7 +1852,7 @@ ggplot(aes(
 ---
 ## **Changing the colour of facet labels**
 
-```{r eval=FALSE}
+```{r chk60, eval=FALSE}
 Rural_Urban_lg %>% 
   filter(year %in% c("2017", "2018")) %>% 
 ggplot(aes(
@@ -1853,7 +1879,7 @@ ggplot(aes(
 ---
 ## **Changing the colour of facet labels**
 Using the *[sape website](http://sape.inf.usi.ch/quick-reference/ggplot2/colour)*, you can find out the various colours to be used.
-```{r eval=FALSE}
+```{r chk61, eval=FALSE}
 Rural_Urban_lg %>% 
   filter(year %in% c("2017", "2018")) %>% 
 ggplot(aes(x= reorder_within(
@@ -1877,3 +1903,647 @@ ggplot(aes(x= reorder_within(
 ---
 ## **Results**
 <img src="picture/wb8.png" style="width:800px;height:500px; center;"/>
+
+---
+class: center, middle
+
+# Week Ten
+
+`Modifying Aesthetics in ggplot2` <br>
+
+<br>
+<br>
+
+.pull-right[
+`Ogundunmade Tayo`
+]
+---
+# Introduction
+Aesthetic mappings can be defined in ggplot() and in individual layers (such as geom_point(), geom_line(), etc). These visual characteristics are known as aesthetics (or aes) and include:
+* color and fill. 
+* points shape
+* line type
+* size
+* group etc.
+
+---
+# Basics
+## Map aesthetics to variables
+.pull-left[
+Map aesthetics to variables and to functions of variables:
+```{r chk62, eval=FALSE}
+library(ggplot2)
+ggplot(ToothGrowth, aes(x = supp, y = len)) + geom_boxplot()
+```
+]
+.pull-right[
+<img src="picture/plot1.png" width="300" height="250">
+]
+---
+# Basics
+## Map aesthetics to functions of variables
+
+```{r chk63, eval=FALSE}
+ggplot(mtcars, aes(x =mpg ^ 2, y = wt / cyl)) + geom_point()
+```
+
+<img src="picture/plot2.png" width="300" height="250">
+---
+
+# Basics
+Aesthetics can be also mapped to constants:
+ map x to constant: 1
+```{r chk64, eval=FALSE}
+ggplot(ToothGrowth, 
+       aes(x = factor(1), y = len)) + 
+  geom_boxplot(width = 0.5) + 
+  geom_jitter(width = 0.1)
+```
+
+<img src="picture/plot3.png" width="300" height="250">
+
+---
+# Color and fill
+.pull-left[
+## Color
+```{r chk65a, eval=FALSE}
+ggplot(ToothGrowth, aes(supp, len)) + geom_boxplot(aes(color = supp))
+```
+<img src="picture/plot4.png" width="300" height="250">
+]
+.pull-right[
+## Fill
+```{r chk65b, eval=FALSE}
+ggplot(ToothGrowth, aes(supp, len)) + geom_boxplot(aes(fill = supp))
+```
+<img src="picture/plot5.png" width="300" height="250">
+]
+
+---
+# Shape
+Change point shapes by groups:
+```{r chk66, eval=FALSE}
+ggplot(iris, 
+       aes(Sepal.Length, Sepal.Width)) +  
+  geom_point(aes(shape = Species))
+```
+<img src="picture/plot6.png" width="300" height="250">
+---
+# Group and line type
+.pull-left[
+In line plot, for example, group aesthetic is used to ensure lines are drawn separately for each group
+```{r chk67, eval=FALSE}
+df2 <- data.frame(supp=rep(c("VC", "OJ"), each=3),
+                  dose=rep(c("D0.5", "D1", "D2"),2), 
+                  len=c(6.8, 15, 33, 4.2, 10, 29.5))
+##Create a grouped line plot
+ggplot(df2, 
+       aes(dose, len, group = supp)) + geom_line() + geom_point()
+```
+<img src="picture/plot7.png" width="300" height="250">
+]
+.pull-right[
+## Change linetype by groups
+```{r chk68, eval=FALSE}
+ggplot(df2, 
+       aes(dose, len, group = supp)) + 
+  geom_line(aes(linetype = supp)) + 
+  geom_point()
+```
+<img src="picture/plot8.png" width="300" height="250">
+]
+---
+
+# Label
+```{r chk69, eval=FALSE}
+ggplot(df2, 
+       aes(dose, len, group = supp)) +  
+  geom_line() + 
+  geom_point() + 
+  geom_text(aes(label = len, vjust = -0.5))
+```
+<img src="picture/plot9.png" width="300" height="250">
+---
+
+# Styling plots, legends, Axis and Titles
+## Adding Plot and Axis Titles
+.pull-left[
+```{r chk70, eval=FALSE}
+data("midwest", package = "ggplot2")
+
+gg <- ggplot(midwest, 
+            aes(x=area, y=poptotal)) + 
+  geom_point(aes(col=state, size=popdensity)) + 
+  geom_smooth(method="loess", se=F) + 
+  xlim(c(0, 0.1)) + 
+  ylim(c(0, 500000)) +  
+  labs(title="Area Vs Population", y="Population", x="Area", 
+       caption="Source: midwest")
+```
+]
+.pull-right[
+<img src="picture/plot11.png" width="500" height="300">
+]
+---
+
+## How to Style the Legend Title, Text and Key
+
+```{r chk71, eval=FALSE}
+gg + theme(legend.title = element_text(size=12, color = "firebrick"), 
+           legend.text = element_text(size=10),
+           legend.key=element_rect(fill='springgreen')) + 
+  guides(colour = guide_legend(override.aes = list(size=2, stroke=1.5)))
+```
+
+
+<img src="picture/plot12.png" width="700" height="400">
+---
+## How to Remove the Legend
+No legend
+```{r chk72, eval=FALSE}
+gg + theme(legend.position="None") + 
+  labs(subtitle="No Legend")
+```
+<img src="picture/plot13.png" width="700" height="400">
+---
+## How toChange Legend Positions
+Legend to the left
+```{r chk73, eval=FALSE}
+gg + theme(legend.position="left") + 
+  labs(subtitle="Legend on the Left")
+```
+<img src="picture/plot14.png" width="700" height="400">
+---
+## How to Change Legend Positions Cont'd...
+.pull-left[
+Legend at the bottom and horizontal
+```{r chk74, eval=FALSE}
+gg + theme(legend.position="bottom", 
+           legend.box = "horizontal") + 
+  labs(subtitle="Legend at Bottom")
+```
+]
+.pull-right[
+<img src="picture/plot15.png" width="700" height="400">
+]
+---
+## How to Change Legend Positions Cont'd...
+.pull-left[
+Legend at bottom-right, inside the plot
+```{r chk75, eval=FALSE}
+gg + theme(legend.title = element_text(size=12, 
+                                       color = "salmon", face="bold"),
+           legend.justification=c(1,0), 
+           legend.position=c(0.95, 0.05),  
+           legend.background = element_blank(),
+           legend.key = element_blank()) + 
+  labs(subtitle="Legend: Bottom-Right Inside the Plot")
+```
+]
+.pull-right[
+<img src="picture/plot16.png" width="700" height="400">
+]
+---
+## How to Change Legend Positions Cont'd...
+.pull-left[
+Legend at top-left, inside the plot
+```{r chk76, eval=FALSE}
+gg + theme(legend.title = element_text(size=12, 
+                                       color = "salmon", face="bold"),
+           legend.justification=c(0,1), 
+           legend.position=c(0.05, 0.95),
+           legend.background = element_blank(),
+           legend.key = element_blank()) + 
+  labs(subtitle="Legend: Top-Left Inside the Plot")
+```
+]
+.pull-right[
+<img src="picture/plot17.png" width="700" height="400">
+]
+---
+
+# How to Add Annotations Anywhere inside Plot
+.pull-left[
+Define and add annotation
+```{r chk77, eval=FALSE}
+library(grid)
+my_text = "This text is at x=0.7 and y=0.8!"
+my_grob = grid.text(my_text, x=0.7,  y=0.8, 
+                    gp=gpar(col="firebrick", fontsize=14, fontface="bold"))
+gg + annotation_custom(my_grob)
+```
+]
+.pull-right[
+<img src="picture/plot18.png" width="700" height="400">
+]
+---
+## How to Add Text and Label around the Points
+Filter required rows.
+```{r chk78, eval=FALSE}
+midwest_sub <-  midwest[midwest$poptotal > 300000, ]
+midwest_sub$large_county <-  ifelse(
+  midwest_sub$poptotal > 300000,
+  midwest_sub$county, "")
+
+# Plot text and label
+gg <- ggplot(midwest, 
+            aes(x=area, y=poptotal)) + 
+  geom_point(aes(col=state, size=popdensity)) + 
+  geom_smooth(method="loess", se=F) + 
+  xlim(c(0, 0.1)) + 
+  ylim(c(0, 500000)) +  
+  labs(title="Area Vs Population", y="Population", x="Area", 
+       caption="Source: midwest")
+gg + geom_text(aes(label=large_county),
+               size=2, data=midwest_sub) + 
+  labs(subtitle="With ggplot2::geom_text") +
+  theme(legend.position = "None")
+```
+---
+## How to Add Text and Label around the Points
+<img src="picture/plot19.png" width="600" height="400">
+---
+## How to Add Text and Label around the Points
+
+```{r chk79, eval=FALSE}
+gg <- ggplot(midwest, 
+            aes(x=area, y=poptotal)) + 
+  geom_point(aes(col=state, size=popdensity)) + 
+  geom_smooth(method="loess", se=F) + 
+  xlim(c(0, 0.1)) + 
+  ylim(c(0, 500000)) +  
+  labs(title="Area Vs Population", y="Population", x="Area", 
+       caption="Source: midwest")
+gg + geom_label(aes(label=large_county), 
+                size=2, data=midwest_sub, alpha=0.25) + 
+  labs(subtitle="With ggplot2::geom_label") + 
+  theme(legend.position = "None")
+```
+---
+## How to Add Text and Label around the Points
+<img src="picture/plot20.png" width="600" height="400">
+
+---
+class: center, middle
+
+# Week Ten
+
+`Building complex and customized plots from data in a data` <br>
+
+<br>
+<br>
+
+.pull-right[
+`Ogundunmade Tayo`
+]
+---
+# How to create a data frame
+## Create a grouped line plot
+.pull-left[
+```{r chk80, eval=FALSE}
+library(ggplot2)
+
+df2 <- data.frame(supp=rep(c("VC", "OJ"), each=3),
+                  dose=rep(c("D0.5", "D1", "D2"),2),
+                  len=c(6.8, 15, 33, 4.2, 10, 29.5))
+ggplot(df2, aes(dose, len, group = supp)) + 
+  geom_line() + 
+  geom_point()
+```
+]
+.pull-right[
+<img src="picture/plot21.png" width="600" height="400">
+]
+
+## Change linetype by groups
+.pull-left[
+```{r chk81, eval=FALSE}
+df2 <- data.frame(supp=rep(c("VC", "OJ"), each=3),
+                  dose=rep(c("D0.5", "D1", "D2"),2),
+                  len=c(6.8, 15, 33, 4.2, 10, 29.5))
+ggplot(df2, aes(dose, len, group = supp)) + 
+  geom_line(aes(linetype = supp)) + 
+  geom_point()
+```
+]
+.pull-right[
+<img src="picture/plot22.png" width="700" height="400">
+]
+
+---
+# How to Change Plot background
+```{r chk82, eval=FALSE}
+library(ggplot2)
+ggplot(mpg, aes(displ, hwy)) +
+      geom_point() + 
+      geom_smooth(method= "lm", se=FALSE) +
+      theme_bw()
+```
+<img src="picture/plot23.png" width="700" height="400">
+---
+# Change Plot Background elements
+.pull-left[
+```{r chk83, eval=FALSE}
+ggplot(mpg, aes(displ, hwy)) +
+      geom_point() + 
+      geom_smooth(method= "lm", se=FALSE) +
+      theme_bw() +
+  theme(panel.background = element_rect(fill = 'khaki'),
+          panel.grid.major = element_line(colour = "burlywood", size=1.5),
+          panel.grid.minor = element_line(colour = "tomato",
+           size=.25,  linetype = "dashed"),
+          panel.border = element_blank(),
+          axis.line.x = element_line(colour = "darkorange",
+          size=1.5,  lineend = "butt"),
+          axis.line.y = element_line(colour = "darkorange", size=1.5)) +  
+  labs(title="Modified Background",
+         subtitle="How to Change Major and Minor grid, \nAxis Lines,No Border")
+```
+]
+.pull-right[
+<img src="picture/plot24.png" width="700" height="400">
+]
+
+---
+# Change Plot Margins
+.pull-left[
+```{r chk84, eval=FALSE}
+ggplot(mpg, aes(displ, hwy)) +
+      geom_point() + 
+      geom_smooth(method= "lm", se=FALSE) +
+      theme_bw() +
+  theme(plot.background=element_rect(fill="salmon"),
+          plot.margin = unit(c(2, 2, 1, 1), "cm")) +
+    labs(title="Modified Background", subtitle="How to Change Plot Margin")
+```
+]
+.pull-right[
+<img src="picture/plot25.png" width="700" height="400">
+]
+
+---
+# Add an Image in Background
+```{r chk85, eval=FALSE}
+
+library(grid)
+library(png)
+img <-  png::readPNG(system.file("img", "Rlogo.png", package="png"))
+ # source: https://www.r-project.org/
+g_pic <-  rasterGrob(img, interpolate=TRUE)
+
+ggplot(mpg, aes(x=displ, y=hwy))+
+      geom_point() +
+      geom_smooth(method="lm", se=FALSE) + 
+      theme(panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          plot.title = element_text(size = rel(1.5), face = "bold"),
+          axis.ticks = element_blank()) +
+  annotation_custom(g_pic, xmin=5, xmax=7, ymin=30, ymax=45)
+```
+---
+# Add an Image in Background
+<img src="picture/plot26.png" width="700" height="500">
+
+---
+
+# ggplot Extensions
+
+This consists of ggplot2 extensions developed by R users in the community. The aim is to make it easy for R users to make good graphics for researches and presentations.
+
+There are over 80 registered extensions available to explore. You can check: 
+
+<a href="https://exts.ggplot2.tidyverse.org/gallery/">ggplot2 extensions</a>
+---
+
+# ggplot Extensions
+## ggpmisc
+Package `ggpmisc` (Miscellaneous Extensions to `ggplot2`) is a set of extensions to R package `ggplot2` with emphasis on annotations and highlighting related to fitted models and data summaries.Data summaries shown as text, tables or equations are implemented. New geoms support insets in ggplots. The location of fit summaries and graphical insets within the plotting area needs usually to be set independently of the x and y scales.
+---
+## ggpmisc
+```{r chk86, eval=FALSE}
+library(ggpmisc)
+library(ggrepel)
+
+ggplot(lynx, as.numeric = FALSE) + geom_line() +
+  stat_peaks(colour = "red") +
+  stat_peaks(geom = "text", colour = "red", angle = 66,
+             hjust = -0.1, x.label.fmt = "%Y") +
+  stat_peaks(geom = "rug", colour = "red", sides = "b") +
+  expand_limits(y = 8000)
+```
+---
+## ggpmisc
+<img src="picture/plot27.png" width="700" height="500">
+---
+## ggpmisc
+In the second example we add the equation for a fitted polynomial plus the adjusted coefficient of determination to a plot showing the observations plus the fitted curve, deviations and confidence band. We use `stat_poly_eq()`.
+```{r chk87, eval=FALSE}
+formula = y ~ x + I(x^2)
+ggplot(cars, aes(speed, dist)) + geom_point() +
+  stat_fit_deviations(method = "lm", 
+                      formula = formula, colour = "red") +
+  geom_smooth(method = "lm", 
+              formula = formula) +
+  stat_poly_eq(aes(label =  paste(stat(eq.label), 
+                                  stat(adj.rr.label), sep = "*\", \"*")),
+               formula = formula, parse = TRUE)
+```
+
+---
+## ggpmisc
+<img src="picture/plot28.png" width="700" height="500">
+---
+## ggpmisc
+The same figure as in the second example but this time annotated with the ANOVA table for the model fit. We use `stat_fit_tb()` which can be used to add ANOVA or summary tables.
+```{r chk88, eval=FALSE}
+formula = y ~ x + I(x^2)
+ggplot(cars, aes(speed, dist)) +
+  geom_point() +
+    geom_smooth(method = "lm", formula = formula) +
+  stat_fit_tb(method = "lm",
+              method.args = list(formula = formula),
+              tb.type = "fit.anova",
+              tb.vars = c(Effect = "term",
+                          "df",
+                          "M.S." = "meansq",
+                          "italic(F)" = "statistic",
+                          "italic(P)" = "p.value"),
+              label.y.npc = "top", label.x.npc = "left",
+              size = 2.5,
+              parse = TRUE)
+```
+---
+<img src="picture/plot29.png" width="700" height="400">
+
+---
+## ggpmisc
+## A plot with an inset plot.
+```{r chk89, eval=FALSE}
+p =  ggplot(mtcars, aes(factor(cyl), mpg, colour = factor(cyl))) +
+  stat_boxplot() +  labs(y = NULL) +
+  theme_bw(9) + theme(legend.position = "none")
+
+ggplot(mtcars, aes(wt, mpg, colour = factor(cyl))) +
+  geom_point() +
+  annotate("plot_npc", npcx = "left", npcy = "bottom", label = p)+ expand_limits(y = 0, x = 0)
+```
+
+---
+## A plot with an inset plot.
+
+<img src="picture/plot30.png" width="700" height="400">
+
+---
+# ggstance
+## Vertical
+```{r chk90, eval=FALSE}
+library(ggplot2)
+
+ggplot(mpg, aes(class, hwy, 
+                fill = factor(cyl))) + 
+  geom_boxplot()
+
+```
+
+
+---
+<img src="picture/plot31.png" width="700" height="500">
+
+---
+
+# Horizontal with coord_flip()
+```{r chk91, eval=FALSE}
+
+ggplot(mpg, aes(class, hwy, fill = factor(cyl))) +
+  geom_boxplot() + 
+  coord_flip()
+```
+
+
+---
+
+<img src="picture/plot32.png" width="700" height="500">
+---
+# ggstance
+## Horizontal with ggstance
+In `ggstance`, you supply aesthetics in their natural order:
+```{r chk92, eval=FALSE}
+install.packages("ggstance")
+library(ggstance)
+
+ggplot(mpg, aes(hwy, class, 
+                fill = factor(cyl))) + 
+  geom_boxploth()
+```
+
+---
+
+<img src="picture/plot33.png" width="700" height="500">
+
+---
+
+## Calendar plot in R using ggplot2
+
+The calendR package allows creating fully customizable ggplot2 calendar plots with a single function. In addition, the package provides arguments to create heatmap calendars.
+
+```{r chk93, eval=FALSE}
+install.packages("calendR")
+library(calendR)
+
+calendR()
+
+```
+
+---
+<img src="picture/plot34.png" >
+
+---
+
+# Calendar plot in R using ggplot2
+
+If you prefer to create a yearly calendar plot of other year you can specify it on the year argument as follows:
+```{r chk94, eval=FALSE}
+calendR(year = 2021)
+
+```
+
+
+---
+
+<img src="picture/plot35.png" >
+
+---
+
+# Adding colors to the days
+
+```{r chk95, eval=FALSE}
+calendR(year = 2025,start = "M",
+        special.days = c(9, 19, 56, 79, 102, 126, 257, 300, 342),
+        special.col = "lightblue",
+        low.col = "white")
+```
+
+---
+
+<img src="picture/plot36.png">
+
+---
+
+# ggnewscale
+.pull-left[
+`ggnewscale` tries to make it painless to use multiple scales in ggplot2. Although originally intended to use with colour and fill, it should work with any `aes`, such as shape, linetype and the rest.
+```{r chk96, eval=FALSE}
+library(ggplot2)
+install.packages("ggnewscale")
+library(ggnewscale)
+```
+]
+.pull-right[
+```{r chk97, eval=FALSE}
+### Equivalent to melt(volcano)
+topography = expand.grid(x = 1:nrow(volcano), y = 1:ncol(volcano))
+topography$z <- c(volcano)
+### point measurements of something at a few locations
+set.seed(42)
+measurements = data.frame(x = runif(30, 1, 80), y = runif(30, 1, 60), 
+                          thing = rnorm(30))
+ggplot(mapping = aes(x, y)) + 
+  geom_contour(data = topography, 
+               aes(z = z, color = stat(level))) +
+### Color scale for topography
+  scale_color_viridis_c(option = "D") +
+### `geoms` below will use another color scale
+   new_scale_color() +
+   geom_point(data = measurements, size = 3, aes(color = thing)) +
+### Color scale applied to `geoms` added after `new_scale_color()`
+   scale_color_viridis_c(option = "A")
+```
+]
+---
+<img src="picture/plot37.png" width="500" height="500">
+
+---
+
+## ggalluvial
+The alluvial plots implemented here can be used to visualize frequency distributions over time or frequency tables involving several categorical variables. The design is inspired by the alluvial package.
+```{r chk98, eval=FALSE}
+install.packages("ggalluvial")
+library(ggalluvial)
+titanic_wide = data.frame(Titanic)
+
+ggplot(data = titanic_wide, 
+       aes(axis1 = Class, axis2 = Sex, axis3 = Age, 
+           y = Freq)) +
+  scale_x_discrete(limits = c("Class", "Sex", "Age"), 
+                   expand = c(0.2, 0.05)) + 
+  xlab("Demographic") +
+  geom_alluvium(aes(fill = Survived)) + 
+  geom_stratum() +
+  geom_text(stat = "stratum", 
+            aes(label = after_stat(stratum))) +
+  theme_minimal() +
+  ggtitle("passengers on the maiden voyage of the Titanic", "stratified by demographics and survival")
+```
+---
+
+<img src="picture/plot38.png" width="600" height="500">
