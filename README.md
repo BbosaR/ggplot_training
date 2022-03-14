@@ -1,1 +1,1 @@
-# ggplot_training
+# ggplot_2 training
